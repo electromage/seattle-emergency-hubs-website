@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Map of Seattle Emergency Hubs locations across Seattle neighborhoods." />
+  <title>Hub Map – Seattle Emergency Hubs</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- Leaflet CSS (open-source map library, no API key needed) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <style>
+    #hub-map { height: 520px; }
+  </style>
+</head>
+<body>
+
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <div class="site-branding">
+        <div class="logo-placeholder" aria-hidden="true">🏘️</div>
+        <a href="index.html" class="site-title">
+          Seattle Emergency Hubs
+          <span>Community Preparedness &amp; Mutual Aid</span>
+        </a>
+      </div>
+      <button class="nav-toggle" id="nav-toggle" aria-controls="site-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+        <ul class="nav-list" role="list">
+          <li><a href="index.html">📰 Blog</a></li>
+          <li><a href="calendar.html">📅 Calendar</a></li>
+          <li><a href="map.html" class="active">🗺️ Hub Map</a></li>
+          <li>
+            <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">
+              🏘️ Hubs <span class="caret" aria-hidden="true">▾</span>
+            </button>
+            <ul class="dropdown-menu" role="list">
+              <li><a href="hubs/index.html">All Hubs</a></li>
+              <li><a href="hubs/beacon-hill.html">Beacon Hill Hub</a></li>
+              <li><a href="hubs/capitol-hill.html">Capitol Hill Hub</a></li>
+              <li><a href="hubs/fremont.html">Fremont Hub</a></li>
+              <li><a href="hubs/rainier-valley.html">Rainier Valley Hub</a></li>
+              <li><a href="hubs/west-seattle.html">West Seattle Hub</a></li>
+            </ul>
+          </li>
+          <li><a href="resources.html">📚 Resources</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <h1 class="section-title">Hub Map</h1>
+    <p class="mb-3">Find an emergency hub near you. Click any marker to learn more about that hub and its volunteer team.</p>
+
+    <div id="hub-map" aria-label="Map of Seattle Emergency Hubs"></div>
+
+    <div class="map-legend">
+      <h3>Legend</h3>
+      <div class="legend-items">
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#1e8449;"></div>
+          <span>Active Hub</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#e67e22;"></div>
+          <span>Hub in Formation</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="notice mt-3">
+      <strong>Want to start a hub in your neighborhood?</strong>
+      Contact us at <a href="mailto:info@seattleemergencyhubs.org">info@seattleemergencyhubs.org</a>
+      and we'll help you get started.
+    </div>
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-cta">
+        <div class="footer-cta-card">
+          <h3>📬 Join Our Mailing List</h3>
+          <p>Stay informed about events, training opportunities, and emergency preparedness tips.</p>
+          <a href="https://mailchimp.com" class="btn-footer btn-mail" target="_blank" rel="noopener noreferrer">Subscribe Now</a>
+        </div>
+        <div class="footer-cta-card">
+          <h3>💛 Donate</h3>
+          <p>Support Seattle Emergency Hubs through our fiscal sponsor, the Seattle Parks Foundation.</p>
+          <a href="https://www.seattleparksfoundation.org/" class="btn-footer btn-donate" target="_blank" rel="noopener noreferrer">Donate via Seattle Parks Foundation</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Seattle Emergency Hubs. All rights reserved.</span>
+        <nav aria-label="Footer navigation" class="footer-links">
+          <a href="index.html">Blog</a>
+          <a href="calendar.html">Calendar</a>
+          <a href="map.html">Hub Map</a>
+          <a href="hubs/index.html">Hubs</a>
+          <a href="resources.html">Resources</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV/XN2GqunQ=" crossorigin=""></script>
+  <script src="js/main.js"></script>
+  <script>
+    (function () {
+      // Seattle center coordinates
+      var map = L.map('hub-map').setView([47.6062, -122.3321], 12);
+
+      // OpenStreetMap tile layer (free, no API key)
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(map);
+
+      // Hub data
+      var hubs = [
+        {
+          name: 'Beacon Hill Hub',
+          coords: [47.5699, -122.3101],
+          status: 'active',
+          url: 'hubs/beacon-hill.html',
+          description: 'Active hub serving the Beacon Hill neighborhood.'
+        },
+        {
+          name: 'Capitol Hill Hub',
+          coords: [47.6249, -122.3200],
+          status: 'active',
+          url: 'hubs/capitol-hill.html',
+          description: 'Active hub serving Capitol Hill and First Hill.'
+        },
+        {
+          name: 'Fremont Hub',
+          coords: [47.6510, -122.3500],
+          status: 'active',
+          url: 'hubs/fremont.html',
+          description: 'Active hub serving Fremont and Wallingford.'
+        },
+        {
+          name: 'Rainier Valley Hub',
+          coords: [47.5480, -122.2880],
+          status: 'forming',
+          url: 'hubs/rainier-valley.html',
+          description: 'Hub currently forming — volunteers welcome!'
+        },
+        {
+          name: 'West Seattle Hub',
+          coords: [47.5637, -122.3868],
+          status: 'active',
+          url: 'hubs/west-seattle.html',
+          description: 'Active hub serving West Seattle and South Park.'
+        }
+      ];
+
+      var activeIcon = L.divIcon({
+        className: '',
+        html: '<div style="background:#1e8449;width:18px;height:18px;border-radius:50%;border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,0.4);"></div>',
+        iconSize: [18, 18],
+        iconAnchor: [9, 9],
+        popupAnchor: [0, -12]
+      });
+
+      var formingIcon = L.divIcon({
+        className: '',
+        html: '<div style="background:#e67e22;width:18px;height:18px;border-radius:50%;border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,0.4);"></div>',
+        iconSize: [18, 18],
+        iconAnchor: [9, 9],
+        popupAnchor: [0, -12]
+      });
+
+      hubs.forEach(function (hub) {
+        var icon = hub.status === 'active' ? activeIcon : formingIcon;
+        var marker = L.marker(hub.coords, { icon: icon }).addTo(map);
+        marker.bindPopup(
+          '<strong>' + hub.name + '</strong><br>' +
+          hub.description + '<br>' +
+          '<a href="' + hub.url + '">Learn more →</a>'
+        );
+      });
+    })();
+  </script>
+</body>
+</html>
