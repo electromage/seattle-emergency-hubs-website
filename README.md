@@ -64,3 +64,11 @@ After access is removed, they can no longer publish through the CMS.
 3. Keep `auth_endpoint` aligned with that broker's route (commonly `auth`).
 
 If you want, I can also add a concrete, step-by-step OAuth broker deployment guide next (Cloudflare Workers, Netlify Function, or Render), so you can copy/paste it.
+
+## Calendar embed troubleshooting
+
+If the calendar iframe loads but shows no events:
+
+1. In Google Calendar settings for that calendar, make sure it is shared so events are visible to the public (or at least to the intended audience for embeds).
+2. Confirm the calendar ID in `calendar.html` is URL-encoded (`@` must be `%40`).
+3. Check that the events are in the future if you are looking at the "Upcoming Events" agenda embed.
