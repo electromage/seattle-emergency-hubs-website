@@ -92,4 +92,69 @@
     if (hubsBtn) hubsBtn.classList.add('active');
   }
 
+  /* ---- Render blog cards from content/posts.json ---- */
+  const latestPostsGrid = document.getElementById('latest-posts-grid');
+
+  function escapeHtml(str) {
+    return String(str || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
+  function formatDate(isoDate) {
+    const d = new Date(isoDate);
+    if (Number.isNaN(d.getTime())) return isoDate;
+    return d.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+  }
+
+  function renderPostCard(post) {
+    return `
+      <article class="post-card">
+        <div class="post-card-body">
+          <span class="post-tag">${escapeHtml(post.tag || 'Blog')}</span>
+          <h2><a href="${escapeHtml(post.url)}">${escapeHtml(post.title)}</a></h2>
+          <p class="post-meta">${escapeHtml(formatDate(post.date))} &middot; ${escapeHtml(post.author || 'Seattle Emergency Hubs')}</p>
+          <p class="post-excerpt">${escapeHtml(post.excerpt || '')}</p>
+        </div>
+        <div class="post-card-footer">
+          <a href="${escapeHtml(post.url)}" class="read-more">Read more →</a>
+        </div>
+      </article>
+    `;
+  }
+
+  if (latestPostsGrid) {
+    fetch('content/posts.json')
+      .then(function (response) {
+        if (!response.ok) {
+          throw new Error('Could not load blog posts.');
+        }
+        return response.json();
+      })
+      .then(function (data) {
+        const posts = Array.isArray(data.posts) ? data.posts.slice() : [];
+
+        posts.sort(function (a, b) {
+          return new Date(b.date) - new Date(a.date);
+        });
+
+        if (!posts.length) {
+          latestPostsGrid.innerHTML = '<p>No posts yet. Check back soon.</p>';
+          return;
+        }
+
+        latestPostsGrid.innerHTML = posts.map(renderPostCard).join('');
+      })
+      .catch(function () {
+        latestPostsGrid.innerHTML = '<p>We could not load blog posts right now. Please try again later.</p>';
+      });
+  }
+
 })();

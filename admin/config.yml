@@ -1,0 +1,30 @@
+backend:
+  name: github
+  repo: YOUR_GITHUB_ORG_OR_USER/seattle-emergency-hubs-website
+  branch: main
+  base_url: https://YOUR-OAUTH-BROKER.example.com
+  auth_endpoint: auth
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "blog"
+    label: "Blog Posts"
+    files:
+      - label: "Front Page Blog Feed"
+        name: "posts"
+        file: "content/posts.json"
+        format: "json"
+        fields:
+          - label: "Posts"
+            name: "posts"
+            widget: "list"
+            summary: "{{fields.date}} — {{fields.title}}"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Post URL", name: "url", widget: "string", hint: "Example: blog/my-post.html" }
+              - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+              - { label: "Author", name: "author", widget: "string" }
+              - { label: "Tag", name: "tag", widget: "string" }
+              - { label: "Excerpt", name: "excerpt", widget: "text" }
