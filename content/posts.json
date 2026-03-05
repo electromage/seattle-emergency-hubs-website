@@ -1,0 +1,52 @@
+{
+  "posts": [
+    {
+      "title": "Welcome to Seattle Emergency Hubs",
+      "url": "blog/welcome-to-seattle-emergency-hubs.html",
+      "date": "2026-03-01",
+      "author": "Seattle Emergency Hubs Team",
+      "tag": "Announcement",
+      "excerpt": "We're excited to launch our new website! Learn about our mission to build neighborhood resilience through community hubs and mutual aid networks."
+    },
+    {
+      "title": "Build Your 72-Hour Go Bag",
+      "url": "blog/build-your-go-bag.html",
+      "date": "2026-02-15",
+      "author": "Preparedness Committee",
+      "tag": "Preparedness",
+      "excerpt": "A step-by-step guide to assembling a 72-hour emergency kit for yourself and your household. Being ready starts at home."
+    },
+    {
+      "title": "What Is an Emergency Hub?",
+      "url": "blog/what-is-a-hub.html",
+      "date": "2026-02-01",
+      "author": "Outreach Team",
+      "tag": "Community",
+      "excerpt": "Emergency hubs are neighborhood gathering points staffed by trained volunteers. Find out how they work and how your neighborhood can start one."
+    },
+    {
+      "title": "Spring Training Day Recap",
+      "url": "blog/spring-training-recap.html",
+      "date": "2026-01-20",
+      "author": "Training Team",
+      "tag": "Events",
+      "excerpt": "Over 60 volunteers attended our spring training event at Rainier Community Center. Read highlights and how to join the next session."
+    },
+    {
+      "title": "Earthquake Preparedness Tips for Seattle Residents",
+      "url": "blog/earthquake-preparedness-tips.html",
+      "date": "2026-01-05",
+      "author": "Preparedness Committee",
+      "tag": "Resources",
+      "excerpt": "Seattle sits near several active fault lines. Here are the essential steps every household should take to prepare for a major earthquake."
+    },
+    {
+      "title": "How Mutual Aid Works After a Disaster",
+      "url": "blog/mutual-aid-after-disaster.html",
+      "date": "2025-12-10",
+      "author": "Outreach Team",
+      "tag": "Mutual Aid",
+      "excerpt": "Mutual aid is neighbors helping neighbors. We explore real-world examples and how Seattle Emergency Hubs facilitates this network of care."
+    }
+  ]
+}
