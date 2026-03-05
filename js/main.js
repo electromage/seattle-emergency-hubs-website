@@ -64,19 +64,32 @@
 
   /* ---- Mark active nav link ---- */
   const currentPath = window.location.pathname;
-  const navLinks = document.querySelectorAll('.nav-list a, .nav-list button');
 
-  navLinks.forEach(function (el) {
-    const href = el.getAttribute('href') || '';
-    if (!href) return;
+  function normalizePath(p) {
+    return p.replace(/\/index\.html$/, '/');
+  }
 
-    // Normalize paths for comparison
-    const normalizedHref = href.replace(/index\.html$/, '').replace(/\/$/, '');
-    const normalizedPath = currentPath.replace(/index\.html$/, '').replace(/\/$/, '');
+  const currentNorm = normalizePath(currentPath);
 
-    if (normalizedPath !== '' && normalizedPath.startsWith(normalizedHref) && normalizedHref !== '') {
-      el.classList.add('active');
+  // Exact-match top-level nav links (Blog, Calendar, Map, Resources, hub sub-pages)
+  document.querySelectorAll('.nav-list > li > a[href]').forEach(function (link) {
+    // link.href is the browser-resolved absolute URL
+    const linkPath = link.href.replace(window.location.origin, '');
+    if (normalizePath(linkPath) === currentNorm) {
+      link.classList.add('active');
     }
   });
+
+  // Blog post pages (/blog/...) → mark Blog nav link active
+  if (currentPath.includes('/blog/')) {
+    const blogLink = document.querySelector('.nav-list > li > a[href$="index.html"]');
+    if (blogLink) blogLink.classList.add('active');
+  }
+
+  // Hub pages (/hubs/...) → mark Hubs dropdown button active
+  if (currentPath.includes('/hubs/')) {
+    const hubsBtn = document.querySelector('.nav-list .dropdown-btn');
+    if (hubsBtn) hubsBtn.classList.add('active');
+  }
 
 })();
