@@ -3,14 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Map of Seattle Emergency Hubs locations across Seattle neighborhoods." />
-  <title>Hub Map – Seattle Emergency Hubs</title>
+  <meta name="description" content="Neighborlink Map of Seattle Emergency Hubs locations across Seattle neighborhoods." />
+  <title>Neighborlink Map – Seattle Emergency Hubs</title>
   <link rel="stylesheet" href="css/style.css" />
-  <!-- Leaflet CSS (open-source map library, no API key needed) -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
   <style>
-    #hub-map { height: 520px; }
+    #hub-map { height: 520px; border: 0; width: 100%; }
   </style>
 </head>
 <body>
@@ -33,7 +30,7 @@
         <ul class="nav-list" role="list">
           <li><a href="index.html">📰 Blog</a></li>
           <li><a href="calendar.html">📅 Calendar</a></li>
-          <li><a href="map.html" class="active">🗺️ Hub Map</a></li>
+          <li><a href="map.html" class="active">🗺️ Neighborlink Map</a></li>
           <li>
             <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">
               🏘️ Hubs <span class="caret" aria-hidden="true">▾</span>
@@ -55,24 +52,17 @@
 
   <main id="main-content">
 
-    <h1 class="section-title">Hub Map</h1>
-    <p class="mb-3">Find an emergency hub near you. Click any marker to learn more about that hub and its volunteer team.</p>
+    <h1 class="section-title">Neighborlink Map</h1>
+    <p class="mb-3">Find an emergency hub near you. Explore the map to learn more about hubs in your neighborhood.</p>
 
-    <div id="hub-map" aria-label="Map of Seattle Emergency Hubs"></div>
-
-    <div class="map-legend">
-      <h3>Legend</h3>
-      <div class="legend-items">
-        <div class="legend-item">
-          <div class="legend-dot" style="background:#1e8449;"></div>
-          <span>Active Hub</span>
-        </div>
-        <div class="legend-item">
-          <div class="legend-dot" style="background:#e67e22;"></div>
-          <span>Hub in Formation</span>
-        </div>
-      </div>
-    </div>
+    <iframe
+      id="hub-map"
+      src="https://www.google.com/maps/d/embed?mid=1mtS4LK_-BMm2TqP2su-Y1cIZUOk&ll=47.60711671372879,-122.32904885&z=11"
+      aria-label="Neighborlink Map of Seattle Emergency Hubs"
+      allowfullscreen
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+    ></iframe>
 
     <div class="notice mt-3">
       <strong>Want to start a hub in your neighborhood?</strong>
@@ -101,7 +91,7 @@
         <nav aria-label="Footer navigation" class="footer-links">
           <a href="index.html">Blog</a>
           <a href="calendar.html">Calendar</a>
-          <a href="map.html">Hub Map</a>
+          <a href="map.html">Neighborlink Map</a>
           <a href="hubs/index.html">Hubs</a>
           <a href="resources.html">Resources</a>
         </nav>
@@ -109,86 +99,6 @@
     </div>
   </footer>
 
-  <!-- Leaflet JS -->
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV/XN2GqunQ=" crossorigin=""></script>
   <script src="js/main.js"></script>
-  <script>
-    (function () {
-      // Seattle center coordinates
-      var map = L.map('hub-map').setView([47.6062, -122.3321], 12);
-
-      // OpenStreetMap tile layer (free, no API key)
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 18,
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      }).addTo(map);
-
-      // Hub data
-      var hubs = [
-        {
-          name: 'Beacon Hill Hub',
-          coords: [47.5699, -122.3101],
-          status: 'active',
-          url: 'hubs/beacon-hill.html',
-          description: 'Active hub serving the Beacon Hill neighborhood.'
-        },
-        {
-          name: 'Capitol Hill Hub',
-          coords: [47.6249, -122.3200],
-          status: 'active',
-          url: 'hubs/capitol-hill.html',
-          description: 'Active hub serving Capitol Hill and First Hill.'
-        },
-        {
-          name: 'Fremont Hub',
-          coords: [47.6510, -122.3500],
-          status: 'active',
-          url: 'hubs/fremont.html',
-          description: 'Active hub serving Fremont and Wallingford.'
-        },
-        {
-          name: 'Rainier Valley Hub',
-          coords: [47.5480, -122.2880],
-          status: 'forming',
-          url: 'hubs/rainier-valley.html',
-          description: 'Hub currently forming — volunteers welcome!'
-        },
-        {
-          name: 'West Seattle Hub',
-          coords: [47.5637, -122.3868],
-          status: 'active',
-          url: 'hubs/west-seattle.html',
-          description: 'Active hub serving West Seattle and South Park.'
-        }
-      ];
-
-      var activeIcon = L.divIcon({
-        className: '',
-        html: '<div style="background:#1e8449;width:18px;height:18px;border-radius:50%;border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,0.4);"></div>',
-        iconSize: [18, 18],
-        iconAnchor: [9, 9],
-        popupAnchor: [0, -12]
-      });
-
-      var formingIcon = L.divIcon({
-        className: '',
-        html: '<div style="background:#e67e22;width:18px;height:18px;border-radius:50%;border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,0.4);"></div>',
-        iconSize: [18, 18],
-        iconAnchor: [9, 9],
-        popupAnchor: [0, -12]
-      });
-
-      hubs.forEach(function (hub) {
-        var icon = hub.status === 'active' ? activeIcon : formingIcon;
-        var marker = L.marker(hub.coords, { icon: icon }).addTo(map);
-        marker.bindPopup(
-          '<strong>' + hub.name + '</strong><br>' +
-          hub.description + '<br>' +
-          '<a href="' + hub.url + '">Learn more →</a>'
-        );
-      });
-    })();
-  </script>
 </body>
 </html>
