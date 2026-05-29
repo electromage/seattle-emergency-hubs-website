@@ -59,6 +59,7 @@
             <li><a href="${prefix}hubs/capitol-hill.html">Capitol Hill Hub</a></li>
             <li><a href="${prefix}hubs/fremont.html">Fremont Hub</a></li>
             <li><a href="${prefix}hubs/rainier-valley.html">Rainier Valley Hub</a></li>
+            <li><a href="https://www.ravennahub.org/home" target="_blank" rel="noopener noreferrer">Ravenna Hub</a></li>
             <li><a href="${prefix}hubs/west-seattle.html">West Seattle Hub</a></li>
           </ul>
         </li>
