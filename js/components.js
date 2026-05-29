@@ -21,10 +21,8 @@
   <div class="header-inner">
 
     <div class="site-branding">
-      <div class="logo-placeholder" aria-hidden="true" title="Logo coming soon">🏘️</div>
-      <a href="${prefix}index.html" class="site-title">
-        Seattle Emergency Hubs
-        <span>Community Preparedness &amp; Mutual Aid</span>
+      <a href="${prefix}index.html" class="logo-link" aria-label="Seattle Emergency Hubs home">
+        <img src="${prefix}images/seh-logo-transparent.png" alt="Seattle Emergency Hubs logo" class="site-logo" />
       </a>
     </div>
 

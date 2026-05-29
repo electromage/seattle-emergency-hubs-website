@@ -12,7 +12,7 @@
 }
 
 :root {
-  --color-primary:   #1a5276;   /* deep navy blue   */
+  --color-primary:   #2e86c1;   /* medium blue      */
   --color-secondary: #1e8449;   /* forest green     */
   --color-accent:    #e67e22;   /* warm orange      */
   --color-bg:        #f4f6f8;   /* light grey bg    */
@@ -98,16 +98,16 @@ img {
   flex-shrink: 0;
 }
 
-.logo-placeholder {
-  width: 44px;
-  height: 44px;
-  background: var(--color-secondary);
-  border-radius: 50%;
+.logo-link {
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: 1.4rem;
   flex-shrink: 0;
+}
+
+.site-logo {
+  height: 44px;
+  width: auto;
+  display: block;
 }
 
 .site-title {
@@ -161,6 +161,8 @@ img {
 /* --- Navigation ------------------------------------- */
 .site-nav {
   flex: 1;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .nav-list {
