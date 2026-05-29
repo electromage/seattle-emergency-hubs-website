@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Brand guidelines, logo downloads, and usage rules for Seattle Emergency Hubs." />
+  <title>Branding – Seattle Emergency Hubs</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* --- Branding page extras --- */
+    .brand-intro {
+      max-width: var(--max-width);
+      margin: 0 auto 2.5rem;
+      padding: 0 1.25rem;
+    }
+
+    .brand-section {
+      max-width: var(--max-width);
+      margin: 0 auto 3rem;
+      padding: 0 1.25rem;
+    }
+    .brand-section h2 {
+      font-size: 1.35rem;
+      color: var(--color-primary);
+      border-bottom: 2px solid var(--color-border);
+      padding-bottom: 0.4rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Logo grid */
+    .logo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.25rem;
+    }
+    .logo-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+    }
+    .logo-card-preview {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 140px;
+      padding: 1.5rem;
+      background: #f0f3f5;
+    }
+    .logo-card-preview.dark-bg {
+      background: #1a2e3a;
+    }
+    .logo-card-preview .placeholder-text {
+      font-size: 0.8rem;
+      color: var(--color-muted);
+      text-align: center;
+      font-style: italic;
+    }
+    .logo-card-preview.dark-bg .placeholder-text {
+      color: #7f8c8d;
+    }
+    .logo-card-body {
+      padding: 1rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .logo-card-body h3 {
+      font-size: 0.95rem;
+      color: var(--color-text);
+    }
+    .logo-card-body p {
+      font-size: 0.85rem;
+      color: var(--color-muted);
+      flex: 1;
+    }
+    .logo-downloads {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    /* Color swatches */
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 1rem;
+    }
+    .color-swatch {
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+      box-shadow: var(--shadow);
+    }
+    .swatch-block {
+      height: 80px;
+    }
+    .swatch-info {
+      background: var(--color-surface);
+      padding: 0.6rem 0.75rem;
+    }
+    .swatch-info strong {
+      display: block;
+      font-size: 0.9rem;
+      color: var(--color-text);
+    }
+    .swatch-info code {
+      font-size: 0.78rem;
+      color: var(--color-muted);
+    }
+
+    /* Typography specimens */
+    .type-specimen {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1rem;
+      box-shadow: var(--shadow);
+    }
+    .type-specimen .label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-muted);
+      margin-bottom: 0.4rem;
+    }
+    .type-specimen .specimen-heading {
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--color-primary);
+    }
+    .type-specimen .specimen-body {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--color-text);
+      margin-top: 0.25rem;
+    }
+    .type-specimen .specimen-detail {
+      font-size: 0.75rem;
+      color: var(--color-muted);
+      margin-top: 0.5rem;
+    }
+
+    /* Do / Don't */
+    .usage-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+    @media (max-width: 600px) {
+      .usage-grid { grid-template-columns: 1fr; }
+    }
+    .usage-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .usage-card-header {
+      padding: 0.6rem 1rem;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+    .usage-card.do .usage-card-header {
+      background: #eafaf1;
+      color: #1e8449;
+      border-bottom: 2px solid #a9dfbf;
+    }
+    .usage-card.dont .usage-card-header {
+      background: #fef9f0;
+      color: #c0392b;
+      border-bottom: 2px solid #f5cba7;
+    }
+    .usage-card ul {
+      list-style: none;
+      padding: 0.75rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .usage-card ul li {
+      font-size: 0.9rem;
+      color: var(--color-text);
+      padding-left: 1.2em;
+      position: relative;
+    }
+    .usage-card.do ul li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #1e8449;
+      font-weight: 700;
+    }
+    .usage-card.dont ul li::before {
+      content: "✗";
+      position: absolute;
+      left: 0;
+      color: #c0392b;
+      font-weight: 700;
+    }
+
+    .brand-note {
+      background: #eaf4fb;
+      border-left: 4px solid var(--color-primary);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 0.9rem 1.1rem;
+      font-size: 0.9rem;
+      color: var(--color-text);
+      margin-top: 1.5rem;
+    }
+    .brand-note a {
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <div id="site-header-placeholder"></div>
+
+  <main id="main-content">
+
+    <h1 class="section-title">Brand Guidelines</h1>
+
+    <div class="brand-intro">
+      <p>These guidelines help partners, volunteers, and hub coordinators represent Seattle Emergency Hubs consistently. Please follow the usage rules below when using our logos or colors in print, digital, or promotional materials.</p>
+      <p class="brand-note">Questions or requests not covered here? Email us at <a href="mailto:info@seattleemergencyhubs.org">info@seattleemergencyhubs.org</a>.</p>
+    </div>
+
+    <!-- Logos -->
+    <section class="brand-section" aria-labelledby="logos-heading">
+      <h2 id="logos-heading">Logos</h2>
+      <div class="logo-grid">
+
+        <div class="logo-card">
+          <div class="logo-card-preview">
+            <span class="placeholder-text">Primary logo<br>(light background)</span>
+          </div>
+          <div class="logo-card-body">
+            <h3>Primary Logo</h3>
+            <p>Use on white or light-colored backgrounds. Preferred version for most applications.</p>
+            <div class="logo-downloads">
+              <a href="#" class="btn btn-primary">SVG</a>
+              <a href="#" class="btn btn-secondary">PNG</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="logo-card">
+          <div class="logo-card-preview dark-bg">
+            <span class="placeholder-text" style="color:#7f8c8d;">Reversed logo<br>(dark background)</span>
+          </div>
+          <div class="logo-card-body">
+            <h3>Reversed Logo</h3>
+            <p>Use on dark or navy backgrounds such as the site footer color (#1a2e3a).</p>
+            <div class="logo-downloads">
+              <a href="#" class="btn btn-primary">SVG</a>
+              <a href="#" class="btn btn-secondary">PNG</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="logo-card">
+          <div class="logo-card-preview">
+            <span class="placeholder-text">Icon / mark only</span>
+          </div>
+          <div class="logo-card-body">
+            <h3>Icon Mark</h3>
+            <p>Square icon for social media profile images, favicons, and small-format uses where the full logotype is not legible.</p>
+            <div class="logo-downloads">
+              <a href="#" class="btn btn-primary">SVG</a>
+              <a href="#" class="btn btn-secondary">PNG</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="logo-card">
+          <div class="logo-card-preview">
+            <span class="placeholder-text">Horizontal lockup</span>
+          </div>
+          <div class="logo-card-body">
+            <h3>Horizontal Lockup</h3>
+            <p>Wide-format version for banners, letterheads, and email headers where a landscape orientation is needed.</p>
+            <div class="logo-downloads">
+              <a href="#" class="btn btn-primary">SVG</a>
+              <a href="#" class="btn btn-secondary">PNG</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Colors -->
+    <section class="brand-section" aria-labelledby="colors-heading">
+      <h2 id="colors-heading">Colors</h2>
+      <div class="color-grid">
+
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#1a5276;"></div>
+          <div class="swatch-info">
+            <strong>Navy Blue</strong>
+            <code>#1a5276</code>
+          </div>
+        </div>
+
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#1e8449;"></div>
+          <div class="swatch-info">
+            <strong>Forest Green</strong>
+            <code>#1e8449</code>
+          </div>
+        </div>
+
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#e67e22;"></div>
+          <div class="swatch-info">
+            <strong>Warm Orange</strong>
+            <code>#e67e22</code>
+          </div>
+        </div>
+
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#1a2e3a;"></div>
+          <div class="swatch-info">
+            <strong>Dark Slate</strong>
+            <code>#1a2e3a</code>
+          </div>
+        </div>
+
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#f4f6f8; border-bottom:1px solid #d5dbdb;"></div>
+          <div class="swatch-info">
+            <strong>Light Grey</strong>
+            <code>#f4f6f8</code>
+          </div>
+        </div>
+
+        <div class="color-swatch">
+          <div class="swatch-block" style="background:#ffffff; border-bottom:1px solid #d5dbdb;"></div>
+          <div class="swatch-info">
+            <strong>White</strong>
+            <code>#ffffff</code>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Typography -->
+    <section class="brand-section" aria-labelledby="type-heading">
+      <h2 id="type-heading">Typography</h2>
+
+      <div class="type-specimen">
+        <div class="label">Headings</div>
+        <div class="specimen-heading">Seattle Emergency Hubs</div>
+        <div class="specimen-detail">Segoe UI / system-ui — Bold, 700 weight</div>
+      </div>
+
+      <div class="type-specimen">
+        <div class="label">Body text</div>
+        <div class="specimen-body">Community preparedness starts neighbor by neighbor. Our hubs provide training, resources, and connection so every Seattle neighborhood can respond together when disaster strikes.</div>
+        <div class="specimen-detail">Segoe UI / system-ui — Regular, 400 weight, 1rem / 1.6 line-height</div>
+      </div>
+
+      <p style="font-size:0.875rem; color:var(--color-muted); margin-top:0.75rem;">The site uses the system font stack (<code>Segoe UI, system-ui, -apple-system, sans-serif</code>) — no web font download required. Match this stack in print or document materials where possible, or substitute a clean geometric sans-serif such as Open Sans or Source Sans Pro.</p>
+    </section>
+
+    <!-- Usage guidelines -->
+    <section class="brand-section" aria-labelledby="usage-heading">
+      <h2 id="usage-heading">Usage Guidelines</h2>
+      <div class="usage-grid">
+
+        <div class="usage-card do">
+          <div class="usage-card-header">Do</div>
+          <ul>
+            <li>Use the provided logo files without modification</li>
+            <li>Maintain clear space around the logo equal to the height of the icon mark</li>
+            <li>Use the reversed logo on dark backgrounds</li>
+            <li>Use Navy Blue or Forest Green as dominant brand colors</li>
+            <li>Credit Seattle Emergency Hubs when reproducing materials</li>
+            <li>Contact us before using the logo in partnership materials or press</li>
+          </ul>
+        </div>
+
+        <div class="usage-card dont">
+          <div class="usage-card-header">Don't</div>
+          <ul>
+            <li>Stretch, skew, or otherwise distort the logo</li>
+            <li>Change logo colors or apply gradients or drop shadows</li>
+            <li>Place the logo on a busy photographic background without a clear field</li>
+            <li>Use the logo to imply official endorsement without permission</li>
+            <li>Recreate the logo in a different typeface or icon</li>
+            <li>Use Warm Orange as a background color for large areas of text</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <div id="site-footer-placeholder"></div>
+
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

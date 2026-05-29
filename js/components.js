@@ -105,6 +105,7 @@
         <a href="${prefix}map.html">Neighborlink Map</a>
         <a href="${prefix}hubs/index.html">Hubs</a>
         <a href="${prefix}resources.html">Resources</a>
+        <a href="${prefix}branding.html">Brand Guidelines</a>
         <a href="https://www.youtube.com/c/SeattleemergencyhubsOrg2015" target="_blank" rel="noopener noreferrer">YouTube</a>
       </nav>
     </div>
