@@ -92,6 +92,56 @@
     if (hubsBtn) hubsBtn.classList.add('active');
   }
 
+  /* ---- Alpha warning modal ---- */
+  const alphaWarningKey = 'seh-alpha-warning-dismissed';
+
+  function createAlphaWarningModal() {
+    const modal = document.createElement('div');
+    modal.className = 'alpha-warning-modal';
+    modal.innerHTML = `
+      <div class="alpha-warning-backdrop" data-alpha-warning-close></div>
+      <div class="alpha-warning-dialog" role="dialog" aria-modal="true" aria-labelledby="alpha-warning-title" aria-describedby="alpha-warning-description">
+        <div class="alpha-warning-badge">Alpha Version</div>
+        <h2 id="alpha-warning-title">Testing and demonstration site</h2>
+        <p id="alpha-warning-description">This site is an alpha version, subject to change. Data may be incomplete, inaccurate, or out of date. It is for testing and demonstration purposes only. The main site <a href="https://seattleemergencyhubs.org" target="_blank" rel="noopener noreferrer">seattleemergencyhubs.org</a> is the only official web site.</p>
+        <div class="alpha-warning-actions">
+          <button type="button" class="btn btn-primary" data-alpha-warning-close>Continue to site</button>
+        </div>
+      </div>
+    `;
+
+    function dismissModal() {
+      sessionStorage.setItem(alphaWarningKey, 'true');
+      modal.remove();
+      document.body.classList.remove('alpha-warning-open');
+    }
+
+    modal.addEventListener('click', function (e) {
+      const closeTarget = e.target.closest('[data-alpha-warning-close]');
+      if (closeTarget) {
+        dismissModal();
+      }
+    });
+
+    document.addEventListener('keydown', function onKeydown(e) {
+      if (e.key === 'Escape' && document.body.classList.contains('alpha-warning-open')) {
+        dismissModal();
+        document.removeEventListener('keydown', onKeydown);
+      }
+    });
+
+    document.body.appendChild(modal);
+    document.body.classList.add('alpha-warning-open');
+  }
+
+  try {
+    if (!sessionStorage.getItem(alphaWarningKey)) {
+      createAlphaWarningModal();
+    }
+  } catch (err) {
+    createAlphaWarningModal();
+  }
+
   /* ---- Render blog cards from content/posts.json ---- */
   const latestPostsGrid = document.getElementById('latest-posts-grid');
 

@@ -16,6 +16,12 @@
   const src = (document.currentScript && document.currentScript.getAttribute('src')) || '';
   const prefix = src.replace('js/components.js', '');
 
+  /* ===== Alpha Banner ===== */
+  const alphaBannerHTML = `<div class="alpha-site-banner" role="note" aria-label="Alpha version notice">
+  <span class="alpha-site-banner-label">Alpha</span>
+  <span class="alpha-site-banner-text">Testing/demo site. Data may be incomplete or outdated. seattleemergencyhubs.org is the official site.</span>
+</div>`;
+
   /* ===== Header ===== */
   const headerHTML = `<header class="site-header" role="banner">
   <div class="header-inner">
@@ -114,7 +120,10 @@
 
   /* ===== Inject ===== */
   const headerEl = document.getElementById('site-header-placeholder');
-  if (headerEl) headerEl.outerHTML = headerHTML;
+  if (headerEl) {
+    headerEl.insertAdjacentHTML('beforebegin', alphaBannerHTML);
+    headerEl.outerHTML = headerHTML;
+  }
 
   const footerEl = document.getElementById('site-footer-placeholder');
   if (footerEl) footerEl.outerHTML = footerHTML;
