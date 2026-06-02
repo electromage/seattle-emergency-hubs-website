@@ -1,6 +1,14 @@
 {
   "posts": [
     {
+      "title": "Pedal Power!",
+      "url": "blog/pedal-power.html",
+      "date": "2026-06-02",
+      "author": "Seattle Emergency Hubs Team",
+      "tag": "Events",
+      "excerpt": "Roads blocked? Fuel scarce? Disaster Relief Trials Seattle 2026 shows how bicycles can support neighborhoods when communities need help most."
+    },
+    {
       "title": "Lakes act like earthquake diaries",
       "url": "blog/lakes-earthquake-diaries.html",
       "date": "2026-05-28",
