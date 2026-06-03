@@ -50,7 +50,7 @@
         </li>
 
         <li>
-          <a href="${prefix}map.html">🗺️ Neighborlink Map</a>
+          <a href="${prefix}map.html">🗺️ Map</a>
         </li>
 
         <li>
@@ -74,6 +74,8 @@
 
       </ul>
     </nav>
+
+    <button class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode" title="Toggle dark/light mode">🌙</button>
 
   </div>
 </header>`;

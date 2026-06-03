@@ -5,6 +5,30 @@
 (function () {
   'use strict';
 
+  /* ---- Theme toggle ---- */
+  const themeToggle = document.getElementById('theme-toggle');
+  const themeKey = 'seh-theme';
+
+  function applyTheme(dark) {
+    document.documentElement.setAttribute('data-theme', dark ? 'dark' : '');
+    if (themeToggle) {
+      themeToggle.textContent = dark ? '☀️' : '🌙';
+      themeToggle.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+    }
+  }
+
+  var isDark = false;
+  try { isDark = localStorage.getItem(themeKey) === 'dark'; } catch (e) {}
+  applyTheme(isDark);
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function () {
+      isDark = !isDark;
+      try { localStorage.setItem(themeKey, isDark ? 'dark' : 'light'); } catch (e) {}
+      applyTheme(isDark);
+    });
+  }
+
   /* ---- Mobile navigation toggle ---- */
   const navToggle = document.getElementById('nav-toggle');
   const siteNav = document.getElementById('site-nav');
