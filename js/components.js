@@ -42,7 +42,7 @@
       <ul class="nav-list" role="list">
 
         <li>
-          <a href="${prefix}index.html">📰 Blog</a>
+          <a href="${prefix}index.html">🏠 Home</a>
         </li>
 
         <li>
@@ -89,7 +89,7 @@
       <div class="footer-cta-card">
         <h3>📬 Join Our Mailing List</h3>
         <p>Stay informed about events, training opportunities, and emergency preparedness tips delivered to your inbox.</p>
-        <a href="https://mailchimp.com" class="btn-footer btn-mail" target="_blank" rel="noopener noreferrer">
+        <a href="https://readyseattle.us9.list-manage.com/subscribe?u=15c317f52899487470ba6529b&id=35244fe1fc" class="btn-footer btn-mail" target="_blank" rel="noopener noreferrer">
           Subscribe Now
         </a>
       </div>

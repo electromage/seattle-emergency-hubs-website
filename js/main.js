@@ -104,7 +104,7 @@
     }
   });
 
-  // Blog post pages (/blog/...) → mark Blog nav link active
+  // Blog post pages (/blog/...) → mark Home nav link active
   if (currentPath.includes('/blog/')) {
     const blogLink = document.querySelector('.nav-list > li > a[href$="index.html"]');
     if (blogLink) blogLink.classList.add('active');
