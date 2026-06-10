@@ -1,0 +1,6 @@
+{
+  "_instructions": "Displayed fields: channel_slot, channel_name, friendly_name, frequency_out, tone. Internal (not shown): lat, lng, antenna_height_m (default 10m if omitted).",
+  "repeaters": [
+  ]
+}
+

@@ -54,6 +54,10 @@
         </li>
 
         <li>
+          <a href="${prefix}hub-finder.html">📍 Hub Finder</a>
+        </li>
+
+        <li>
           <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">
             🏘️ Hubs <span class="caret" aria-hidden="true">▾</span>
           </button>
@@ -110,6 +114,7 @@
         <a href="${prefix}index.html">Blog</a>
         <a href="${prefix}calendar.html">Calendar</a>
         <a href="${prefix}map.html">Neighborlink Map</a>
+        <a href="${prefix}hub-finder.html">Hub Finder</a>
         <a href="${prefix}hubs/index.html">Hubs</a>
         <a href="${prefix}resources.html">Resources</a>
         <a href="${prefix}about.html">About Us</a>

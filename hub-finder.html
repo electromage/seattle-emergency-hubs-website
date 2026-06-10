@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Hub Finder for Seattle Emergency Hubs. Search by address to find your nearest hub and emergency communications resources." />
+  <title>Hub Finder - Seattle Emergency Hubs</title>
+  <script>try{if(localStorage.getItem("seh-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
+  <link rel="stylesheet" href="css/style.css" />
+  <meta name="seh-google-maps-api-key" content="" />
+</head>
+<body>
+
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <div id="site-header-placeholder"></div>
+
+  <main id="main-content">
+    <h1 class="section-title">Hub Finder</h1>
+    <p class="mb-2">Search by address or use your current location to find nearby Seattle Emergency Hubs, hub captain contact details, ACS sector information, and GMRS repeater path analysis.</p>
+    <div class="notice mb-3">
+      <strong>Setup note:</strong> On Netlify, set the environment variable <code>GOOGLE_MAPS_API_KEY</code> and this page will use it automatically.
+      For local/testing, you can still set the <code>seh-google-maps-api-key</code> meta tag value in this page.
+    </div>
+
+    <hub-finder
+      kml-url="data/hubs.kml"
+      gmrs-url="data/gmrs_repeaters.json"
+      key-meta="seh-google-maps-api-key"
+    ></hub-finder>
+  </main>
+
+  <div id="site-footer-placeholder"></div>
+
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/runtime-config.js"></script>
+  <script src="js/hub-finder.js"></script>
+</body>
+</html>

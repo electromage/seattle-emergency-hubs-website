@@ -72,3 +72,15 @@ If the calendar iframe loads but shows no events:
 1. In Google Calendar settings for that calendar, make sure it is shared so events are visible to the public (or at least to the intended audience for embeds).
 2. Confirm the calendar ID in `calendar.html` is URL-encoded (`@` must be `%40`).
 3. Check that the events are in the future if you are looking at the "Upcoming Events" agenda embed.
+
+## Hub Finder API key on Netlify
+
+The Hub Finder page (`hub-finder.html`) reads the Google Maps key from `window.GOOGLE_MAPS_API_KEY`.
+
+For Netlify deploys, this is generated automatically from the environment variable `GOOGLE_MAPS_API_KEY`:
+
+1. In Netlify site settings, add environment variable `GOOGLE_MAPS_API_KEY`.
+2. Keep `netlify.toml` in the repo so Netlify writes `js/runtime-config.js` at build time.
+3. The generated `js/runtime-config.js` sets `window.GOOGLE_MAPS_API_KEY` before `js/hub-finder.js` loads.
+
+For local/manual testing, you can also set the `seh-google-maps-api-key` meta tag directly in `hub-finder.html`.
