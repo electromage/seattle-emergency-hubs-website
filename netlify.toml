@@ -1,3 +1,6 @@
 [build]
   command = "printf 'window.GOOGLE_MAPS_API_KEY = \"%s\";\\n' \"$GOOGLE_MAPS_API_KEY\" > js/runtime-config.js"
   publish = "."
+
+[build.environment]
+  SECRETS_SCAN_OMIT_KEYS = "GOOGLE_MAPS_API_KEY"
