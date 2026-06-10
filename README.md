@@ -82,5 +82,6 @@ For Netlify deploys, this is generated automatically from the environment variab
 1. In Netlify site settings, add environment variable `GOOGLE_MAPS_API_KEY`.
 2. Keep `netlify.toml` in the repo so Netlify writes `js/runtime-config.js` at build time.
 3. The generated `js/runtime-config.js` sets `window.GOOGLE_MAPS_API_KEY` before `js/hub-finder.js` loads.
+4. The build also accepts legacy `GOOGLE_API_KEY`, but `GOOGLE_MAPS_API_KEY` is preferred.
 
 For local/manual testing, you can also set the `seh-google-maps-api-key` meta tag directly in `hub-finder.html`.

@@ -1,5 +1,5 @@
 [build]
-  command = "printf 'window.GOOGLE_MAPS_API_KEY = \"%s\";\\n' \"$GOOGLE_MAPS_API_KEY\" > js/runtime-config.js"
+  command = "API_KEY=\"${GOOGLE_MAPS_API_KEY:-$GOOGLE_API_KEY}\"; if [ -z \"$API_KEY\" ]; then echo 'Missing GOOGLE_MAPS_API_KEY (or legacy GOOGLE_API_KEY)'; exit 1; fi; printf 'window.GOOGLE_MAPS_API_KEY = \"%s\";\\n' \"$API_KEY\" > js/runtime-config.js"
   publish = "."
 
 [build.environment]

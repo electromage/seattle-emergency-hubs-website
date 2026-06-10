@@ -54,10 +54,6 @@
         </li>
 
         <li>
-          <a href="${prefix}hub-finder.html">📍 Hub Finder</a>
-        </li>
-
-        <li>
           <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">
             🏘️ Hubs <span class="caret" aria-hidden="true">▾</span>
           </button>
