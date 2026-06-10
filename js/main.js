@@ -224,7 +224,7 @@
           return;
         }
 
-        latestPostsGrid.innerHTML = posts.map(renderPostCard).join('');
+        latestPostsGrid.innerHTML = posts.slice(0, 5).map(renderPostCard).join('');
       })
       .catch(function () {
         latestPostsGrid.innerHTML = '<p>We could not load blog posts right now. Please try again later.</p>';
