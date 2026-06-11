@@ -1,6 +1,51 @@
 {
   "_instructions": "Displayed fields: channel_slot, channel_name, friendly_name, frequency_out, tone. Internal (not shown): lat, lng, antenna_height_m (default 10m if omitted).",
   "repeaters": [
+    {
+      "channel_slot": 23,
+      "channel_name": "RPTCH1",
+      "friendly_name": "West Seattle",
+      "frequency_out": 462.550,
+      "tone": 103.5,
+      "lat": 47.54050437715813,
+      "lng": -122.37831257589959
+    },
+    {
+      "channel_slot": 24,
+      "channel_name": "RPTCH2",
+      "friendly_name": "Beacon Hill",
+      "frequency_out": 462.575,
+      "tone": 103.5,
+      "lat": 47.5882121895577,
+      "lng": -122.31562625656781
+    },
+    {
+      "channel_slot": 25,
+      "channel_name": "RPTCH3",
+      "friendly_name": "Capitol Hill",
+      "frequency_out": 462.600,
+      "tone": 103.5,
+      "lat": 47.615661126989714,
+      "lng": -122.30891459038064
+    },
+    {
+      "channel_slot": 26,
+      "channel_name": "RPTCH4",
+      "friendly_name": "Magnolia",
+      "frequency_out": 462.625,
+      "tone": 100.0,
+      "lat": 47.65086289765911,
+      "lng": -122.39140171017898
+    },
+    {
+      "channel_slot": 28,
+      "channel_name": "RPTCH6",
+      "friendly_name": "Maple Leaf",
+      "frequency_out": 462.675,
+      "tone": 141.3,
+      "lat": 47.69117193179489,
+      "lng": -122.3173871885938
+    }
   ]
 }
 
