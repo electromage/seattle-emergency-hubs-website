@@ -244,8 +244,9 @@
       padding: 0.8rem 0.9rem 0.7rem;
       background: var(--bg);
     }
-    .gmrs-card.clear      { border-left-color: var(--green); }
-    .gmrs-card.obstructed { border-left-color: var(--red); }
+    .gmrs-card.clear               { border-left-color: var(--green); }
+    .gmrs-card.possibly-obstructed { border-left-color: #e6a817; }
+    .gmrs-card.likely-obstructed   { border-left-color: var(--red); }
     .gmrs-card-header {
       display: flex;
       justify-content: space-between;
@@ -261,8 +262,9 @@
       padding: 0.15rem 0.4rem;
       border-radius: 3px;
     }
-    .gmrs-status.clear      { background: #d4edda; color: var(--green); }
-    .gmrs-status.obstructed { background: #fde8e8; color: var(--red); }
+    .gmrs-status.clear               { background: #d4edda; color: var(--green); }
+    .gmrs-status.possibly-obstructed { background: #fef3cd; color: #856404; }
+    .gmrs-status.likely-obstructed   { background: #fde8e8; color: var(--red); }
     .gmrs-status.pending    { background: #e8edf2; color: var(--muted); }
     .gmrs-meta { font-size: 0.78rem; color: var(--muted); margin-bottom: 0.55rem; }
     .gmrs-profile { border-radius: 4px; overflow: hidden; line-height: 0; }
@@ -919,11 +921,11 @@
           return;
         }
         const a   = result.value;
-        const cls = a.obstructed ? 'obstructed' : 'clear';
-        card.className = 'gmrs-card ' + cls;
+        const statusLabel = { clear: 'Clear', 'possibly-obstructed': 'Needs Testing', 'likely-obstructed': 'Likely Obstructed' };
+        card.className = 'gmrs-card ' + a.status;
         card.querySelector('.gmrs-card-header').innerHTML = `
           <span class="gmrs-friendly-name">${rep.friendly_name}</span>
-          <span class="gmrs-status ${cls}">${a.obstructed ? 'Obstructed' : 'Clear'}</span>`;
+          <span class="gmrs-status ${a.status}">${statusLabel[a.status]}</span>`;
         card.querySelector('.gmrs-meta').textContent =
           'Ch ' + rep.channel_slot + ' · ' + rep.channel_name + ' · PL ' + rep.tone + ' · ' + a.distMi.toFixed(1) + ' mi';
         card.querySelector('.gmrs-profile').innerHTML = this._buildProfileSVG(a);
@@ -947,26 +949,32 @@
       const h2         = results[SAMPLES - 1].elevation + REP_HEIGHT;
 
       let minClearance = Infinity;
+      let minLosClearance = Infinity;
       const points = results.map((r, i) => {
         const frac = i / (SAMPLES - 1);
         const d1   = frac * totalDistM;
         const d2   = (1 - frac) * totalDistM;
         const fr   = (d1 > 0 && d2 > 0) ? Math.sqrt(lambda * d1 * d2 / totalDistM) : 0;
         const los  = h1 + (h2 - h1) * frac;
-        const clearance = los - r.elevation - 0.6 * fr;
-        if (clearance < minClearance) minClearance = clearance;
+        const losClearance = los - r.elevation;
+        const clearance    = losClearance - 0.6 * fr;
+        if (clearance < minClearance)       minClearance    = clearance;
+        if (losClearance < minLosClearance) minLosClearance = losClearance;
         return { elev: r.elevation, los, fr };
       });
 
+      const status = minLosClearance < 0  ? 'likely-obstructed'
+                   : minClearance    < 0  ? 'possibly-obstructed'
+                   :                        'clear';
+
       return {
-        rep, points, totalDistM, minClearance,
-        obstructed: minClearance < 0,
+        rep, points, totalDistM, minClearance, status,
         distMi: this._distanceMiles(userLat, userLng, rep.lat, rep.lng),
       };
     }
 
     _buildProfileSVG(analysis) {
-      const { points, obstructed } = analysis;
+      const { points, status } = analysis;
       const N = points.length;
       const W = 400, H = 90;
 
@@ -987,8 +995,12 @@
       fresnel += ' Z';
 
       const los     = 'M ' + px(0) + ',' + py(points[0].los) + ' L ' + px(N - 1) + ',' + py(points[N - 1].los);
-      const lineClr = obstructed ? '#c0392b' : '#1e7e45';
-      const fillClr = obstructed ? 'rgba(192,57,43,0.15)' : 'rgba(30,126,69,0.15)';
+      const lineClr = status === 'likely-obstructed'   ? '#c0392b'
+                    : status === 'possibly-obstructed' ? '#e6a817'
+                    :                                    '#1e7e45';
+      const fillClr = status === 'likely-obstructed'   ? 'rgba(192,57,43,0.15)'
+                    : status === 'possibly-obstructed' ? 'rgba(230,168,23,0.15)'
+                    :                                    'rgba(30,126,69,0.15)';
 
       return '<svg viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="none"' +
              ' width="100%" height="' + H + '" xmlns="http://www.w3.org/2000/svg">' +
