@@ -953,7 +953,7 @@
         const d2   = (1 - frac) * totalDistM;
         const fr   = (d1 > 0 && d2 > 0) ? Math.sqrt(lambda * d1 * d2 / totalDistM) : 0;
         const los  = h1 + (h2 - h1) * frac;
-        const clearance = los - r.elevation - fr;
+        const clearance = los - r.elevation - 0.6 * fr;
         if (clearance < minClearance) minClearance = clearance;
         return { elev: r.elevation, los, fr };
       });
