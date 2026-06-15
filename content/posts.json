@@ -1,6 +1,14 @@
 {
   "posts": [
     {
+      "title": "Happy \"Amateur Radio\" Month!",
+      "url": "blog/amateur-radio-month.html",
+      "date": "2026-06-15",
+      "author": "Seattle Emergency Hubs Team",
+      "tag": "Events",
+      "excerpt": "Washington state celebrates Amateur Radio Month in June. Join fellow hams at Seattle's Field Day June 26–28, or try HF radio yourself at the GOTA station — no license required."
+    },
+    {
       "title": "Pedal Power!",
       "url": "blog/pedal-power.html",
       "date": "2026-06-02",
