@@ -478,7 +478,8 @@ h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
 
 .post-card.has-image {
   display: flex;
-  align-items: stretch;
+  flex-direction: row;
+  align-items: flex-start;
 }
 
 .post-card-media {
@@ -491,7 +492,7 @@ h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
 .post-card.has-image .post-card-media {
   flex: 0 0 clamp(110px, 18vw, 170px);
   width: clamp(110px, 18vw, 170px);
-  height: auto;
+  aspect-ratio: 1 / 1;
   border-right: 1px solid var(--color-border);
 }
 
@@ -500,11 +501,6 @@ h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
   height: 100%;
   object-fit: cover;
   display: block;
-}
-
-.post-card.has-image .post-card-media img {
-  object-fit: contain;
-  padding: 0.5rem;
 }
 
 .post-card-content {
@@ -576,15 +572,11 @@ h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
   }
 
   .post-card.has-image .post-card-media {
+    flex: 0 0 auto;
     width: 100%;
     aspect-ratio: 16 / 7;
-    height: auto;
     border-right: 0;
     border-bottom: 1px solid var(--color-border);
-  }
-
-  .post-card.has-image .post-card-media img {
-    padding: 0.75rem 1rem;
   }
 }
 

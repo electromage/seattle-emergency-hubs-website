@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
   <title id="title">Community Cover</title>
   <desc id="desc">Teal background with connected circles.</desc>
   <defs>
@@ -7,13 +7,13 @@
       <stop offset="100%" stop-color="#14b8a6"/>
     </linearGradient>
   </defs>
-  <rect width="1200" height="630" fill="url(#g)"/>
-  <line x1="170" y1="280" x2="350" y2="170" stroke="#e2e8f0" stroke-width="14"/>
-  <line x1="350" y1="170" x2="520" y2="300" stroke="#e2e8f0" stroke-width="14"/>
-  <line x1="350" y1="170" x2="510" y2="470" stroke="#e2e8f0" stroke-width="14"/>
-  <circle cx="170" cy="280" r="55" fill="#fef3c7"/>
-  <circle cx="350" cy="170" r="55" fill="#fef3c7"/>
-  <circle cx="520" cy="300" r="55" fill="#fef3c7"/>
-  <circle cx="510" cy="470" r="55" fill="#fef3c7"/>
-  <text x="595" y="315" fill="#ffffff" font-size="84" font-family="Noto Sans, Arial, sans-serif" font-weight="700">Community</text>
+  <rect width="1200" height="1200" fill="url(#g)"/>
+  <line x1="470" y1="380" x2="600" y2="300" stroke="#e2e8f0" stroke-width="14"/>
+  <line x1="600" y1="300" x2="720" y2="430" stroke="#e2e8f0" stroke-width="14"/>
+  <line x1="600" y1="300" x2="610" y2="560" stroke="#e2e8f0" stroke-width="14"/>
+  <circle cx="470" cy="380" r="58" fill="#fef3c7"/>
+  <circle cx="600" cy="300" r="58" fill="#fef3c7"/>
+  <circle cx="720" cy="430" r="58" fill="#fef3c7"/>
+  <circle cx="610" cy="560" r="58" fill="#fef3c7"/>
+  <text x="600" y="880" text-anchor="middle" fill="#ffffff" font-size="112" font-family="Noto Sans, Arial, sans-serif" font-weight="700">Community</text>
 </svg>
