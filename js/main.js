@@ -203,9 +203,10 @@
   function renderPostCard(post) {
     const imageSrc = post.image ? resolveAssetPath(post.image) : '';
     const imageAlt = post.imageAlt || post.title || 'Blog post image';
+    const cardClass = imageSrc ? 'post-card has-image' : 'post-card';
 
     return `
-      <article class="post-card">
+      <article class="${cardClass}">
         ${imageSrc ? `<a class="post-card-media" href="${escapeHtml(post.url)}" aria-label="Read ${escapeHtml(post.title)}"><img src="${escapeHtml(imageSrc)}" alt="${escapeHtml(imageAlt)}" loading="lazy" decoding="async"></a>` : ''}
         <div class="post-card-body">
           <span class="post-tag">${escapeHtml(post.tag || 'Blog')}</span>
