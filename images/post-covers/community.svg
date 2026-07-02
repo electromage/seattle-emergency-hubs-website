@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Community Cover</title>
+  <desc id="desc">Teal background with connected circles.</desc>
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f766e"/>
+      <stop offset="100%" stop-color="#14b8a6"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#g)"/>
+  <line x1="170" y1="280" x2="350" y2="170" stroke="#e2e8f0" stroke-width="14"/>
+  <line x1="350" y1="170" x2="520" y2="300" stroke="#e2e8f0" stroke-width="14"/>
+  <line x1="350" y1="170" x2="510" y2="470" stroke="#e2e8f0" stroke-width="14"/>
+  <circle cx="170" cy="280" r="55" fill="#fef3c7"/>
+  <circle cx="350" cy="170" r="55" fill="#fef3c7"/>
+  <circle cx="520" cy="300" r="55" fill="#fef3c7"/>
+  <circle cx="510" cy="470" r="55" fill="#fef3c7"/>
+  <text x="595" y="315" fill="#ffffff" font-size="84" font-family="Noto Sans, Arial, sans-serif" font-weight="700">Community</text>
+</svg>

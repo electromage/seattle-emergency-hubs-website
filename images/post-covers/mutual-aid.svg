@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Mutual Aid Cover</title>
+  <desc id="desc">Warm gradient with two linked hands icon style.</desc>
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#b45309"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#g)"/>
+  <rect x="120" y="250" width="210" height="120" rx="60" fill="#ffedd5"/>
+  <rect x="300" y="215" width="220" height="120" rx="60" fill="#fff7ed"/>
+  <rect x="250" y="300" width="220" height="120" rx="60" fill="#fef3c7"/>
+  <rect x="430" y="265" width="210" height="120" rx="60" fill="#fde68a"/>
+  <text x="670" y="300" fill="#ffffff" font-size="84" font-family="Noto Sans, Arial, sans-serif" font-weight="700">Mutual Aid</text>
+  <text x="670" y="370" fill="#ffffff" font-size="44" font-family="Noto Sans, Arial, sans-serif">Neighbors Helping Neighbors</text>
+</svg>

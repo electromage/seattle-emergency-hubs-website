@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Announcement Cover</title>
+  <desc id="desc">Blue background with megaphone motif.</desc>
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1e3a8a"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#g)"/>
+  <polygon points="110,290 360,180 360,450 110,340" fill="#fef3c7"/>
+  <rect x="360" y="255" width="90" height="120" rx="14" fill="#fde68a"/>
+  <rect x="430" y="270" width="80" height="25" rx="12" fill="#ffffff"/>
+  <rect x="430" y="310" width="110" height="25" rx="12" fill="#ffffff"/>
+  <rect x="430" y="350" width="95" height="25" rx="12" fill="#ffffff"/>
+  <text x="570" y="315" fill="#ffffff" font-size="74" font-family="Noto Sans, Arial, sans-serif" font-weight="700">Announcement</text>
+</svg>

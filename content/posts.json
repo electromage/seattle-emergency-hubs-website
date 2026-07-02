@@ -1,11 +1,23 @@
 {
   "posts": [
     {
+      "title": "Emergencies Can Happen With Little Warning",
+      "url": "blog/emergencies-can-happen-with-little-warning.html",
+      "date": "2026-07-02",
+      "author": "Seattle Emergency Hubs Team",
+      "tag": "Preparedness",
+      "image": "images/post-covers/preparedness.svg",
+      "imageAlt": "Preparedness checklist illustration",
+      "excerpt": "Recent events, including the earthquake in Venezuela, are a reminder to know your nearest Emergency Hub before normal communication systems are disrupted."
+    },
+    {
       "title": "Happy \"Amateur Radio\" Month!",
       "url": "blog/amateur-radio-month.html",
       "date": "2026-06-15",
       "author": "Seattle Emergency Hubs Team",
       "tag": "Events",
+      "image": "images/post-covers/events.svg",
+      "imageAlt": "Calendar graphic for events and trainings",
       "excerpt": "Washington state celebrates Amateur Radio Month in June. Join fellow hams at Seattle's Field Day June 26–28, or try HF radio yourself at the GOTA station — no license required."
     },
     {
@@ -14,6 +26,8 @@
       "date": "2026-06-02",
       "author": "Seattle Emergency Hubs Team",
       "tag": "Events",
+      "image": "images/post-covers/events.svg",
+      "imageAlt": "Calendar graphic for events and trainings",
       "excerpt": "Roads blocked? Fuel scarce? Disaster Relief Trials Seattle 2026 shows how bicycles can support neighborhoods when communities need help most."
     },
     {
@@ -22,6 +36,8 @@
       "date": "2026-05-28",
       "author": "Seattle Emergency Hubs Team",
       "tag": "Preparedness",
+      "image": "images/post-covers/preparedness.svg",
+      "imageAlt": "Preparedness checklist illustration",
       "excerpt": "Lake sediment at Ozette on the Olympic Peninsula preserves 14,000 years of earthquake history. Here's what it means for your preparedness tonight."
     },
     {
@@ -30,6 +46,8 @@
       "date": "2026-03-01",
       "author": "Seattle Emergency Hubs Team",
       "tag": "Announcement",
+      "image": "images/post-covers/announcement.svg",
+      "imageAlt": "Megaphone illustration for announcements",
       "excerpt": "We're excited to launch our new website! Learn about our mission to build neighborhood resilience through community hubs and mutual aid networks."
     },
     {
@@ -38,6 +56,8 @@
       "date": "2026-02-15",
       "author": "Preparedness Committee",
       "tag": "Preparedness",
+      "image": "images/post-covers/preparedness.svg",
+      "imageAlt": "Preparedness checklist illustration",
       "excerpt": "A step-by-step guide to assembling a 72-hour emergency kit for yourself and your household. Being ready starts at home."
     },
     {
@@ -46,6 +66,8 @@
       "date": "2026-02-01",
       "author": "Outreach Team",
       "tag": "Community",
+      "image": "images/post-covers/community.svg",
+      "imageAlt": "Connected circles representing neighborhood community",
       "excerpt": "Emergency hubs are neighborhood gathering points staffed by trained volunteers. Find out how they work and how your neighborhood can start one."
     },
     {
@@ -54,6 +76,8 @@
       "date": "2026-01-20",
       "author": "Training Team",
       "tag": "Events",
+      "image": "images/post-covers/events.svg",
+      "imageAlt": "Calendar graphic for events and trainings",
       "excerpt": "Over 60 volunteers attended our spring training event at Rainier Community Center. Read highlights and how to join the next session."
     },
     {
@@ -62,6 +86,8 @@
       "date": "2026-01-05",
       "author": "Preparedness Committee",
       "tag": "Resources",
+      "image": "images/post-covers/resources.svg",
+      "imageAlt": "Stacked resource cards illustration",
       "excerpt": "Seattle sits near several active fault lines. Here are the essential steps every household should take to prepare for a major earthquake."
     },
     {
@@ -70,6 +96,8 @@
       "date": "2025-12-10",
       "author": "Outreach Team",
       "tag": "Mutual Aid",
+      "image": "images/post-covers/mutual-aid.svg",
+      "imageAlt": "Illustration symbolizing mutual aid between neighbors",
       "excerpt": "Mutual aid is neighbors helping neighbors. We explore real-world examples and how Seattle Emergency Hubs facilitates this network of care."
     }
   ]

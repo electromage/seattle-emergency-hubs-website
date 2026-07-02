@@ -188,9 +188,25 @@
     });
   }
 
+  function resolveAssetPath(path) {
+    if (!path) return '';
+    if (/^(https?:)?\/\//.test(path) || path.indexOf('data:') === 0) return path;
+
+    const cleaned = path.replace(/^\.\//, '').replace(/^\//, '');
+    if (currentPath.includes('/blog/')) {
+      return '../' + cleaned;
+    }
+
+    return cleaned;
+  }
+
   function renderPostCard(post) {
+    const imageSrc = post.image ? resolveAssetPath(post.image) : '';
+    const imageAlt = post.imageAlt || post.title || 'Blog post image';
+
     return `
       <article class="post-card">
+        ${imageSrc ? `<a class="post-card-media" href="${escapeHtml(post.url)}" aria-label="Read ${escapeHtml(post.title)}"><img src="${escapeHtml(imageSrc)}" alt="${escapeHtml(imageAlt)}" loading="lazy" decoding="async"></a>` : ''}
         <div class="post-card-body">
           <span class="post-tag">${escapeHtml(post.tag || 'Blog')}</span>
           <h2><a href="${escapeHtml(post.url)}">${escapeHtml(post.title)}</a></h2>
@@ -202,6 +218,40 @@
         </div>
       </article>
     `;
+  }
+
+  function findCurrentPost(posts) {
+    const currentFile = currentPath.split('/').pop() || '';
+
+    return posts.find(function (post) {
+      const postUrl = String(post.url || '');
+      return postUrl.endsWith('/' + currentFile) || postUrl.endsWith(currentFile);
+    });
+  }
+
+  function injectPostFeaturedImage(post) {
+    if (!post || !post.image) return;
+
+    const article = document.querySelector('.post-article');
+    if (!article || article.querySelector('.post-featured')) return;
+
+    const imageSrc = resolveAssetPath(post.image);
+    const imageAlt = post.imageAlt || post.title || 'Blog post image';
+    const featuredMarkup = `<figure class="post-featured"><img src="${escapeHtml(imageSrc)}" alt="${escapeHtml(imageAlt)}" loading="eager" decoding="async"></figure>`;
+
+    const meta = article.querySelector('.post-meta');
+    if (meta) {
+      meta.insertAdjacentHTML('afterend', featuredMarkup);
+      return;
+    }
+
+    const heading = article.querySelector('h1');
+    if (heading) {
+      heading.insertAdjacentHTML('afterend', featuredMarkup);
+      return;
+    }
+
+    article.insertAdjacentHTML('afterbegin', featuredMarkup);
   }
 
   if (latestPostsGrid) {
@@ -228,6 +278,24 @@
       })
       .catch(function () {
         latestPostsGrid.innerHTML = '<p>We could not load blog posts right now. Please try again later.</p>';
+      });
+  }
+
+  if (currentPath.includes('/blog/')) {
+    fetch('../content/posts.json')
+      .then(function (response) {
+        if (!response.ok) {
+          throw new Error('Could not load blog posts.');
+        }
+        return response.json();
+      })
+      .then(function (data) {
+        const posts = Array.isArray(data.posts) ? data.posts : [];
+        const currentPost = findCurrentPost(posts);
+        injectPostFeaturedImage(currentPost);
+      })
+      .catch(function () {
+        // If metadata cannot be loaded, keep the article layout unchanged.
       });
   }
 
