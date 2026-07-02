@@ -205,9 +205,27 @@
     const imageAlt = post.imageAlt || post.title || 'Blog post image';
     const cardClass = imageSrc ? 'post-card has-image' : 'post-card';
 
+    if (imageSrc) {
+      return `
+        <article class="${cardClass}">
+          <a class="post-card-media" href="${escapeHtml(post.url)}" aria-label="Read ${escapeHtml(post.title)}"><img src="${escapeHtml(imageSrc)}" alt="${escapeHtml(imageAlt)}" loading="lazy" decoding="async"></a>
+          <div class="post-card-content">
+            <div class="post-card-body">
+              <span class="post-tag">${escapeHtml(post.tag || 'Blog')}</span>
+              <h2><a href="${escapeHtml(post.url)}">${escapeHtml(post.title)}</a></h2>
+              <p class="post-meta">${escapeHtml(formatDate(post.date))} &middot; ${escapeHtml(post.author || 'Seattle Emergency Hubs')}</p>
+              <p class="post-excerpt">${escapeHtml(post.excerpt || '')}</p>
+            </div>
+            <div class="post-card-footer">
+              <a href="${escapeHtml(post.url)}" class="read-more">Read more →</a>
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
     return `
       <article class="${cardClass}">
-        ${imageSrc ? `<a class="post-card-media" href="${escapeHtml(post.url)}" aria-label="Read ${escapeHtml(post.title)}"><img src="${escapeHtml(imageSrc)}" alt="${escapeHtml(imageAlt)}" loading="lazy" decoding="async"></a>` : ''}
         <div class="post-card-body">
           <span class="post-tag">${escapeHtml(post.tag || 'Blog')}</span>
           <h2><a href="${escapeHtml(post.url)}">${escapeHtml(post.title)}</a></h2>
