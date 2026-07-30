@@ -646,6 +646,26 @@ h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
   margin: 0.5rem 0 1rem 1.5rem;
 }
 
+/* Inline artwork within a post body, sized so tall images do not dominate. */
+.post-figure {
+  margin: 1.5rem auto;
+  max-width: 440px;
+}
+
+.post-figure img {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.post-figure figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  text-align: center;
+}
+
 .back-link {
   display: inline-flex;
   align-items: center;
