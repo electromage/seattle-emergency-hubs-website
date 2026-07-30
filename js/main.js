@@ -203,7 +203,10 @@
   function renderPostCard(post) {
     const imageSrc = post.image ? resolveAssetPath(post.image) : '';
     const imageAlt = post.imageAlt || post.title || 'Blog post image';
-    const cardClass = imageSrc ? 'post-card has-image' : 'post-card';
+    const isBanner = post.imageLayout === 'banner';
+    const cardClass = imageSrc
+      ? (isBanner ? 'post-card has-banner' : 'post-card has-image')
+      : 'post-card';
 
     if (imageSrc) {
       return `
@@ -256,7 +259,8 @@
 
     const imageSrc = resolveAssetPath(post.image);
     const imageAlt = post.imageAlt || post.title || 'Blog post image';
-    const featuredMarkup = `<figure class="post-featured"><img src="${escapeHtml(imageSrc)}" alt="${escapeHtml(imageAlt)}" loading="eager" decoding="async"></figure>`;
+    const figureClass = post.imageLayout === 'banner' ? 'post-featured is-banner' : 'post-featured';
+    const featuredMarkup = `<figure class="${figureClass}"><img src="${escapeHtml(imageSrc)}" alt="${escapeHtml(imageAlt)}" loading="eager" decoding="async"></figure>`;
 
     const meta = article.querySelector('.post-meta');
     if (meta) {

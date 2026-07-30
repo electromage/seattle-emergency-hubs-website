@@ -1,6 +1,17 @@
 {
   "posts": [
     {
+      "title": "Quake, Rattle, and Roll",
+      "url": "blog/quake-rattle-and-roll.html",
+      "date": "2026-07-30",
+      "author": "Seattle Emergency Hubs Team",
+      "tag": "Events",
+      "image": "images/quake-rattle-roll-banner.png",
+      "imageAlt": "Quake, Rattle, and Roll citywide drill banner",
+      "imageLayout": "banner",
+      "excerpt": "Our citywide earthquake drill is Saturday, August 15, 2026, 10am to 1pm at four locations: Roosevelt, Madison Valley, Rainier Beach, and West Seattle. Come see how neighbors work together."
+    },
+    {
       "title": "Emergencies Can Happen With Little Warning",
       "url": "blog/emergencies-can-happen-with-little-warning.html",
       "date": "2026-07-02",

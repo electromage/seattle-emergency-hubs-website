@@ -28,7 +28,7 @@
 
     <div class="site-branding">
       <a href="${prefix}index.html" class="logo-link" aria-label="Seattle Emergency Hubs home">
-        <img src="${prefix}images/seh-logo-transparent.png" alt="Seattle Emergency Hubs logo" class="site-logo" />
+        <img src="${prefix}images/brand-guide/seh-logos/SEH-Logo-RGB-small.png" alt="Seattle Emergency Hubs logo" class="site-logo" />
       </a>
     </div>
 
@@ -114,6 +114,7 @@
         <a href="${prefix}hubs/index.html">Hubs</a>
         <a href="${prefix}resources.html">Resources</a>
         <a href="${prefix}about.html">About Us</a>
+        <a href="${prefix}branding.html">Brand Assets</a>
         <a href="https://www.youtube.com/c/SeattleemergencyhubsOrg2015" target="_blank" rel="noopener noreferrer">YouTube</a>
       </nav>
     </div>

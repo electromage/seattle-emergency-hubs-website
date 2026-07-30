@@ -1,0 +1,15 @@
+{
+  "intro": "A curated library of photos contributed by hub volunteers and members, cleared for use in Seattle Emergency Hubs communications. Please credit the photographer as shown on each photo.",
+  "photos": [
+    {
+      "title": "Emergency hub in action after a quake",
+      "image": "images/hubs-wquake.png",
+      "caption": "Volunteers staffing a neighborhood hub table during an earthquake response exercise.",
+      "credit": "Seattle Emergency Hubs",
+      "date": "2026-07-02",
+      "location": "Seattle, WA",
+      "tags": ["Hubs", "Training"],
+      "usage": "Approved for Seattle Emergency Hubs and partner communications."
+    }
+  ]
+}

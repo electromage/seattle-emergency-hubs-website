@@ -1,0 +1,140 @@
+{
+  "intro": "These guidelines help partners, volunteers, and hub coordinators represent Seattle Emergency Hubs consistently. Please follow the usage rules below when using our logos, colors, or photos in print, digital, or promotional materials.",
+  "contactEmail": "info@seattleemergencyhubs.org",
+  "logos": [
+    {
+      "name": "Primary Logo",
+      "description": "Full-color logo for white or light-colored backgrounds. This is the preferred version for most applications.",
+      "background": "light",
+      "image": "images/brand-guide/seh-logos/SEH-Logo-RGB.svg",
+      "downloads": [
+        { "label": "SVG", "file": "images/brand-guide/seh-logos/SEH-Logo-RGB.svg" },
+        { "label": "PNG", "file": "images/brand-guide/seh-logos/SEH-Logo-RGB-large.png" }
+      ]
+    },
+    {
+      "name": "Reversed Logo",
+      "description": "Full-color logo adjusted for dark backgrounds such as the site footer color (#1a2e3a).",
+      "background": "dark",
+      "image": "images/brand-guide/seh-logos/SEH-Logo-RGB-Inverse.svg",
+      "downloads": [
+        { "label": "SVG", "file": "images/brand-guide/seh-logos/SEH-Logo-RGB-Inverse.svg" },
+        { "label": "PNG", "file": "images/brand-guide/seh-logos/SEH-Logo-RGB-Inverse-large.png" }
+      ]
+    },
+    {
+      "name": "Circle Mark",
+      "description": "Square icon for social media profile images, favicons, and small-format uses where the full logotype is not legible.",
+      "background": "light",
+      "image": "images/brand-guide/seh-logos/SEH-Logo-RGB-Circle.svg",
+      "downloads": [
+        { "label": "SVG", "file": "images/brand-guide/seh-logos/SEH-Logo-RGB-Circle.svg" },
+        { "label": "PNG", "file": "images/brand-guide/seh-logos/SEH-Logo-RGB-Circle-large.png" }
+      ]
+    },
+    {
+      "name": "One-Color Black",
+      "description": "Single-color version for black-and-white printing, faxes, photocopies, and engraving.",
+      "background": "light",
+      "image": "images/brand-guide/seh-logos/SEH-Logo-RGB-Black.svg",
+      "downloads": [
+        { "label": "SVG", "file": "images/brand-guide/seh-logos/SEH-Logo-RGB-Black.svg" },
+        { "label": "PNG", "file": "images/brand-guide/seh-logos/SEH-Logo-RGB-Black-large.png" },
+        { "label": "EPS", "file": "images/brand-guide/seh-logos/SEH-Logo-RGB-Black.eps" }
+      ]
+    },
+    {
+      "name": "One-Color White",
+      "description": "Single-color version for dark backgrounds, photographs, and merchandise printed on dark fabric.",
+      "background": "dark",
+      "image": "images/brand-guide/seh-logos/SEH-Logo-RGB-White.svg",
+      "downloads": [
+        { "label": "SVG", "file": "images/brand-guide/seh-logos/SEH-Logo-RGB-White.svg" },
+        { "label": "PNG", "file": "images/brand-guide/seh-logos/SEH-Logo-RGB-White-large.png" },
+        { "label": "EPS", "file": "images/brand-guide/seh-logos/SEH-Logo-RGB-White.eps" }
+      ]
+    }
+  ],
+  "colors": [
+    {
+      "name": "Navy Blue",
+      "hex": "#1a5276",
+      "role": "Primary brand color",
+      "note": "Headlines, print materials, and large brand areas."
+    },
+    {
+      "name": "Hub Blue",
+      "hex": "#2e86c1",
+      "role": "Website primary",
+      "note": "Used for links, buttons, and headings on this website."
+    },
+    {
+      "name": "Forest Green",
+      "hex": "#1e8449",
+      "role": "Secondary",
+      "note": "Positive actions, confirmations, and supporting accents."
+    },
+    {
+      "name": "Signal Orange",
+      "hex": "#ff4d00",
+      "role": "Accent",
+      "note": "Highlights and calls to attention. Use sparingly."
+    },
+    {
+      "name": "Dark Slate",
+      "hex": "#1a2e3a",
+      "role": "Dark background",
+      "note": "Footer background and reversed-logo backdrops."
+    },
+    {
+      "name": "Light Grey",
+      "hex": "#f4f6f8",
+      "role": "Page background",
+      "note": "Default page background in light mode."
+    },
+    {
+      "name": "White",
+      "hex": "#ffffff",
+      "role": "Surface",
+      "note": "Cards, panels, and content surfaces."
+    }
+  ],
+  "fonts": [
+    {
+      "role": "Headings",
+      "family": "Noto Sans",
+      "weight": "700 (Bold)",
+      "sample": "Seattle Emergency Hubs",
+      "note": "Falls back to system-ui / Segoe UI where Noto Sans is unavailable.",
+      "sourceUrl": "https://fonts.google.com/noto/specimen/Noto+Sans",
+      "sourceLabel": "Download Noto Sans (Google Fonts)"
+    },
+    {
+      "role": "Body text",
+      "family": "Noto Sans",
+      "weight": "400 (Regular), 1.6 line-height",
+      "sample": "Community preparedness starts neighbor by neighbor. Our hubs provide training, resources, and connection so every Seattle neighborhood can respond together when disaster strikes.",
+      "note": "Noto Sans is free to download and use in print and document materials.",
+      "sourceUrl": "https://fonts.google.com/noto/specimen/Noto+Sans",
+      "sourceLabel": "Download Noto Sans (Google Fonts)"
+    }
+  ],
+  "usageDo": [
+    "Use the provided logo files without modification",
+    "Maintain clear space around the logo equal to the height of the icon mark",
+    "Use the reversed logo on dark backgrounds",
+    "Use Navy Blue or Forest Green as dominant brand colors",
+    "Credit Seattle Emergency Hubs when reproducing materials",
+    "Credit the individual photographer when using a contributed photo",
+    "Contact us before using the logo in partnership materials or press"
+  ],
+  "usageDont": [
+    "Stretch, skew, or otherwise distort the logo",
+    "Change logo colors or apply gradients or drop shadows",
+    "Place the logo on a busy photographic background without a clear field",
+    "Use the logo to imply official endorsement without permission",
+    "Recreate the logo in a different typeface or icon",
+    "Use Signal Orange as a background color for large areas of text",
+    "Use contributed photos in commercial or political advertising"
+  ]
+}

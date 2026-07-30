@@ -14,7 +14,7 @@
 :root {
   --color-primary:   #2e86c1;   /* medium blue      */
   --color-secondary: #1e8449;   /* forest green     */
-  --color-accent:    #e67e22;   /* warm orange      */
+  --color-accent:    #ff4d00;   /* signal orange    */
   --color-bg:        #f4f6f8;   /* light grey bg    */
   --color-surface:   #ffffff;
   --color-text:      #2c3e50;
@@ -496,6 +496,26 @@ h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
   border-right: 1px solid var(--color-border);
 }
 
+/* Wide artwork (event banners) runs full width above the text instead of
+   being cropped into the square thumbnail. */
+.post-card.has-banner {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.post-card.has-banner .post-card-media {
+  flex: none;
+  width: 100%;
+  aspect-ratio: auto;
+  border-right: none;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.post-card.has-banner .post-card-media img {
+  height: auto;
+  object-fit: contain;
+}
+
 .post-card-media img {
   width: 100%;
   height: 100%;
@@ -608,6 +628,13 @@ h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
   aspect-ratio: 16 / 8;
   object-fit: cover;
   display: block;
+}
+
+/* Banner artwork keeps its own proportions rather than being cropped to 16/8. */
+.post-featured.is-banner img {
+  aspect-ratio: auto;
+  height: auto;
+  object-fit: contain;
 }
 
 .post-article p {
