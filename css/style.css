@@ -125,6 +125,11 @@ img {
   max-width: 72rem;
 }
 
+.alpha-site-banner-text a {
+  color: inherit;
+  text-decoration: underline;
+}
+
 @media (max-width: 640px) {
   .alpha-site-banner {
     flex-direction: column;
