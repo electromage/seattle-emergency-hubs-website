@@ -28,6 +28,15 @@ collections:
               - { label: "Author", name: "author", widget: "string" }
               - { label: "Tag", name: "tag", widget: "string" }
               - { label: "Excerpt", name: "excerpt", widget: "text" }
+              - { label: "Image", name: "image", widget: "image", required: false, hint: "Cover artwork shown on the home page and at the top of the post." }
+              - { label: "Image alt text", name: "imageAlt", widget: "string", required: false, hint: "Describes the image for screen readers." }
+              - label: "Image layout"
+                name: "imageLayout"
+                widget: "select"
+                required: false
+                options: ["standard", "banner"]
+                default: "standard"
+                hint: "'standard' crops the image to a square thumbnail beside the text. Use 'banner' for wide artwork so it runs full width above the text uncropped."
 
   - name: "brand"
     label: "Brand Assets"
