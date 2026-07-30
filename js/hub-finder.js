@@ -40,7 +40,7 @@
       --muted:  var(--color-muted, #5d6d7e);
       --border: var(--color-border, #d5dbdb);
       --green:  var(--color-secondary, #1e8449);
-      --amber:  var(--color-accent, #e67e22);
+      --amber:  var(--color-accent, #ff4d00);
       display: block;
       font-family: 'Noto Sans', system-ui, -apple-system, sans-serif;
       color: var(--text);

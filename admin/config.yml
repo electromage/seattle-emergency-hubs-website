@@ -28,3 +28,109 @@ collections:
               - { label: "Author", name: "author", widget: "string" }
               - { label: "Tag", name: "tag", widget: "string" }
               - { label: "Excerpt", name: "excerpt", widget: "text" }
+
+  - name: "brand"
+    label: "Brand Assets"
+    files:
+
+      - label: "Brand Guide (logos, colors, fonts)"
+        name: "guide"
+        file: "content/brand.json"
+        format: "json"
+        media_folder: "/images/brand-guide"
+        public_folder: "images/brand-guide"
+        fields:
+          - label: "Intro text"
+            name: "intro"
+            widget: "text"
+            hint: "Shown at the top of the Brand Assets page."
+          - label: "Contact email"
+            name: "contactEmail"
+            widget: "string"
+
+          - label: "Logos"
+            name: "logos"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Description", name: "description", widget: "text", hint: "When should someone use this version?" }
+              - label: "Preview background"
+                name: "background"
+                widget: "select"
+                options: ["light", "dark"]
+                default: "light"
+                hint: "Choose 'dark' for reversed logos meant for dark backgrounds."
+              - { label: "Preview image", name: "image", widget: "image", required: false, hint: "Shown on the page. Leave empty if the file is not ready yet." }
+              - label: "Download files"
+                name: "downloads"
+                widget: "list"
+                required: false
+                summary: "{{fields.label}}"
+                fields:
+                  - { label: "Button label", name: "label", widget: "string", hint: "Example: SVG, PNG, EPS" }
+                  - { label: "File", name: "file", widget: "file" }
+
+          - label: "Colors"
+            name: "colors"
+            widget: "list"
+            summary: "{{fields.name}} — {{fields.hex}}"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Hex code", name: "hex", widget: "string", pattern: ["^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$", "Enter a hex code such as #1a5276"] }
+              - { label: "Role", name: "role", widget: "string", required: false, hint: "Example: Primary brand color" }
+              - { label: "Usage note", name: "note", widget: "text", required: false }
+
+          - label: "Fonts"
+            name: "fonts"
+            widget: "list"
+            summary: "{{fields.role}} — {{fields.family}}"
+            fields:
+              - { label: "Role", name: "role", widget: "string", hint: "Example: Headings, Body text" }
+              - { label: "Font family", name: "family", widget: "string" }
+              - { label: "Weight / size", name: "weight", widget: "string", required: false }
+              - { label: "Sample text", name: "sample", widget: "text", required: false }
+              - { label: "Note", name: "note", widget: "text", required: false }
+              - { label: "Download URL", name: "sourceUrl", widget: "string", required: false }
+              - { label: "Download link label", name: "sourceLabel", widget: "string", required: false }
+
+          - label: "Usage — Do"
+            name: "usageDo"
+            widget: "list"
+            field: { label: "Rule", name: "rule", widget: "string" }
+
+          - label: "Usage — Don't"
+            name: "usageDont"
+            widget: "list"
+            field: { label: "Rule", name: "rule", widget: "string" }
+
+      - label: "Member Photo Library"
+        name: "photos"
+        file: "content/photos.json"
+        format: "json"
+        media_folder: "/images/photos"
+        public_folder: "images/photos"
+        fields:
+          - label: "Intro text"
+            name: "intro"
+            widget: "text"
+
+          - label: "Photos"
+            name: "photos"
+            widget: "list"
+            summary: "{{fields.title}} — {{fields.credit}}"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Photo", name: "image", widget: "image", hint: "Full-size image. Please resize to about 1600px wide before uploading." }
+              - { label: "Thumbnail", name: "thumbnail", widget: "image", required: false, hint: "Optional smaller version for the grid. Leave empty to use the full-size photo." }
+              - { label: "Caption", name: "caption", widget: "text", required: false, hint: "Also used as the image alt text for screen readers." }
+              - { label: "Photo credit", name: "credit", widget: "string", hint: "How the contributor wants to be credited." }
+              - { label: "Date taken", name: "date", widget: "datetime", required: false, format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+              - { label: "Location", name: "location", widget: "string", required: false }
+              - label: "Tags"
+                name: "tags"
+                widget: "list"
+                required: false
+                field: { label: "Tag", name: "tag", widget: "string" }
+                hint: "Used for the filter buttons. Example: Hubs, Training, Volunteers, Events."
+              - { label: "Usage permission", name: "usage", widget: "text", required: false, hint: "What the contributor has approved this photo to be used for." }
