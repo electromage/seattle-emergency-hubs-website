@@ -28,7 +28,10 @@
 
     <div class="site-branding">
       <a href="${prefix}index.html" class="logo-link" aria-label="Seattle Emergency Hubs home">
-        <img src="${prefix}images/brand-guide/seh-logos/SEH-Logo-RGB-small.png" alt="Seattle Emergency Hubs logo" class="site-logo" />
+        <img src="${prefix}images/brand-guide/seh-logos/SEH-Logo-RGB-small.png"
+             data-src-light="${prefix}images/brand-guide/seh-logos/SEH-Logo-RGB-small.png"
+             data-src-dark="${prefix}images/brand-guide/seh-logos/SEH-Logo-RGB-Inverse-small.png"
+             alt="Seattle Emergency Hubs logo" class="site-logo" id="site-logo" />
       </a>
     </div>
 
@@ -42,20 +45,20 @@
       <ul class="nav-list" role="list">
 
         <li>
-          <a href="${prefix}index.html">🏠 Home</a>
+          <a href="${prefix}about.html">About</a>
         </li>
 
         <li>
-          <a href="${prefix}calendar.html">📅 Calendar</a>
+          <a href="${prefix}calendar.html">Calendar</a>
         </li>
 
         <li>
-          <a href="${prefix}map.html">🗺️ Map</a>
+          <a href="${prefix}map.html">Map</a>
         </li>
 
         <li>
           <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">
-            🏘️ Hubs <span class="caret" aria-hidden="true">▾</span>
+            Hubs <span class="caret" aria-hidden="true">▾</span>
           </button>
           <ul class="dropdown-menu" role="list">
             <li><a href="${prefix}hubs/index.html">All Hubs</a></li>
@@ -69,7 +72,7 @@
         </li>
 
         <li>
-          <a href="${prefix}resources.html">📚 Resources</a>
+          <a href="${prefix}resources.html">Resources</a>
         </li>
 
       </ul>
@@ -113,6 +116,7 @@
         <a href="${prefix}hub-finder.html">Hub Finder</a>
         <a href="${prefix}hubs/index.html">Hubs</a>
         <a href="${prefix}resources.html">Resources</a>
+        <a href="${prefix}start-a-hub.html">Start a Hub</a>
         <a href="${prefix}about.html">About Us</a>
         <a href="${prefix}branding.html">Brand Assets</a>
         <a href="https://www.youtube.com/c/SeattleemergencyhubsOrg2015" target="_blank" rel="noopener noreferrer">YouTube</a>
