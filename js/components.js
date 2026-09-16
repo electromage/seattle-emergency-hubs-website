@@ -19,7 +19,7 @@
   /* ===== Alpha Banner ===== */
   const alphaBannerHTML = `<div class="alpha-site-banner" role="note" aria-label="Alpha version notice">
   <span class="alpha-site-banner-label">Alpha</span>
-  <span class="alpha-site-banner-text">Testing/demo site. Data may be incomplete or outdated. seattleemergencyhubs.org is the official site.</span>
+  <span class="alpha-site-banner-text">Testing/demo site. Data may be incomplete or outdated. <a href="https://seattleemergencyhubs.org" target="_blank" rel="noopener noreferrer">seattleemergencyhubs.org</a> is the official site.</span>
 </div>`;
 
   /* ===== Header ===== */
