@@ -1,0 +1,59 @@
+{
+  "hubs": [
+    {
+      "slug": "ballard",
+      "name": "Ballard Hubs",
+      "blurb": "Six hubs serving Ballard, Loyal Heights, Whittier Heights, and Shilshole.",
+      "status": "active",
+      "metricLabel": "Hubs",
+      "metricValue": "6"
+    },
+    {
+      "slug": "beacon-hill",
+      "name": "Beacon Hill Hub",
+      "blurb": "Serving Beacon Hill, Jefferson Park, and surrounding areas.",
+      "status": "active",
+      "metricLabel": "Volunteers",
+      "metricValue": "18"
+    },
+    {
+      "slug": "capitol-hill",
+      "name": "Capitol Hill Hub",
+      "blurb": "Serving Capitol Hill, First Hill, and the Central District.",
+      "status": "active",
+      "metricLabel": "Volunteers",
+      "metricValue": "24"
+    },
+    {
+      "slug": "fremont",
+      "name": "Fremont Hub",
+      "blurb": "Serving Fremont, Wallingford, and Green Lake areas.",
+      "status": "active",
+      "metricLabel": "Volunteers",
+      "metricValue": "15"
+    },
+    {
+      "slug": "rainier-valley",
+      "name": "Rainier Valley Hub",
+      "blurb": "Serving Columbia City, Rainier Beach, and South Beacon Hill.",
+      "status": "forming",
+      "metricLabel": "Volunteers",
+      "metricValue": "7"
+    },
+    {
+      "slug": "ravenna",
+      "name": "Ravenna Hub",
+      "blurb": "Serving Ravenna and Bryant. Ravenna runs its own website.",
+      "status": "active",
+      "externalUrl": "https://www.ravennahub.org/home"
+    },
+    {
+      "slug": "west-seattle",
+      "name": "West Seattle Hub",
+      "blurb": "Serving West Seattle, Admiral District, and South Park.",
+      "status": "active",
+      "metricLabel": "Volunteers",
+      "metricValue": "21"
+    }
+  ]
+}

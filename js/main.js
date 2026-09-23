@@ -15,6 +15,11 @@
       themeToggle.textContent = dark ? '☀️' : '🌙';
       themeToggle.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
     }
+    var logo = document.getElementById('site-logo');
+    if (logo) {
+      var src = dark ? logo.getAttribute('data-src-dark') : logo.getAttribute('data-src-light');
+      if (src) logo.setAttribute('src', src);
+    }
   }
 
   var isDark = false;
@@ -104,11 +109,7 @@
     }
   });
 
-  // Blog post pages (/blog/...) → mark Home nav link active
-  if (currentPath.includes('/blog/')) {
-    const blogLink = document.querySelector('.nav-list > li > a[href$="index.html"]');
-    if (blogLink) blogLink.classList.add('active');
-  }
+  // Blog post pages (/blog/...) — no nav item to highlight (blog is on the home/index page)
 
   // Hub pages (/hubs/...) → mark Hubs dropdown button active
   if (currentPath.includes('/hubs/')) {
