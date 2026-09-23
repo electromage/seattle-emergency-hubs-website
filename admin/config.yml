@@ -6,34 +6,42 @@ media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
 collections:
+  # One markdown file per post. The build (tools/build-blog.mjs) turns each into
+  # blog/<slug>.html and rebuilds content/posts.json, so there is no URL field to
+  # fill in and no page to create by hand.
   - name: "blog"
     label: "Blog Posts"
-    files:
-      - label: "Front Page Blog Feed"
-        name: "posts"
-        file: "content/posts.json"
-        format: "json"
-        fields:
-          - label: "Posts"
-            name: "posts"
-            widget: "list"
-            summary: "{{fields.date}} — {{fields.title}}"
-            fields:
-              - { label: "Title", name: "title", widget: "string" }
-              - { label: "Post URL", name: "url", widget: "string", hint: "Example: blog/my-post.html" }
-              - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
-              - { label: "Author", name: "author", widget: "string" }
-              - { label: "Tag", name: "tag", widget: "string" }
-              - { label: "Excerpt", name: "excerpt", widget: "text" }
-              - { label: "Image", name: "image", widget: "image", required: false, hint: "Cover artwork shown on the home page and at the top of the post." }
-              - { label: "Image alt text", name: "imageAlt", widget: "string", required: false, hint: "Describes the image for screen readers." }
-              - label: "Image layout"
-                name: "imageLayout"
-                widget: "select"
-                required: false
-                options: ["standard", "banner"]
-                default: "standard"
-                hint: "'standard' crops the image to a square thumbnail beside the text. Use 'banner' for wide artwork so it runs full width above the text uncropped."
+    label_singular: "Blog Post"
+    folder: "content/posts"
+    create: true
+    slug: "{{slug}}"
+    format: "yaml-frontmatter"
+    preview_path: "blog/{{slug}}.html"
+    summary: "{{date}} — {{title}}"
+    sortable_fields: ["date", "title"]
+    fields:
+      - { label: "Title", name: "title", widget: "string", hint: "The page address is built from this. Changing it later on an existing post changes that post's URL." }
+      - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: "Author", name: "author", widget: "string", default: "Seattle Emergency Hubs Team" }
+      - label: "Tag"
+        name: "tag"
+        widget: "select"
+        options: ["Announcement", "Community", "Events", "Mutual Aid", "Preparedness", "Resources"]
+        default: "Community"
+      - { label: "Excerpt", name: "excerpt", widget: "text", hint: "One or two plain sentences for the home page card. Not the article itself — write that in Post below." }
+      - { label: "Post", name: "body", widget: "markdown", hint: "The article. Headings, lists, links and images all work." }
+      - { label: "Image", name: "image", widget: "image", required: false, hint: "Cover artwork shown on the home page card and at the top of the post." }
+      - { label: "Image alt text", name: "imageAlt", widget: "string", required: false, hint: "Describes the image for screen readers." }
+      - label: "Image layout"
+        name: "imageLayout"
+        widget: "select"
+        required: false
+        options: ["standard", "banner"]
+        default: "standard"
+        hint: "'standard' crops the image to a square thumbnail beside the text. Use 'banner' for wide artwork so it runs full width above the text uncropped."
+      - { label: "Search description", name: "description", widget: "text", required: false, hint: "Optional. Shown in search results and link previews. Falls back to the excerpt." }
+      - { label: "Link out instead of a post page", name: "externalUrl", widget: "string", required: false, hint: "Optional. For announcements that just point somewhere else — the card links straight there and no post page is built. Leave empty for a normal post." }
+      - { label: "Draft", name: "draft", widget: "boolean", required: false, default: false, hint: "Draft posts are left out of the site entirely until unchecked." }
 
   - name: "hubs"
     label: "Hubs"

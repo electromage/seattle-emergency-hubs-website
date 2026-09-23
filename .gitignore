@@ -1,0 +1,8 @@
+node_modules/
+
+# Build output of tools/build-blog.mjs. The sources are content/posts/*.md.
+# Committing these would leave stale copies in the repo every time the CMS
+# publishes a post, since the CMS commits markdown and only the build renders
+# HTML. Run `npm run build:blog` after cloning to get a browsable site.
+blog/*.html
+content/posts.json
