@@ -1,9 +1,6 @@
 backend:
-  name: github
-  repo: YOUR_GITHUB_ORG_OR_USER/seattle-emergency-hubs-website
+  name: git-gateway
   branch: main
-  base_url: https://YOUR-OAUTH-BROKER.example.com
-  auth_endpoint: auth
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
