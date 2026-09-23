@@ -60,14 +60,10 @@
           <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">
             Hubs <span class="caret" aria-hidden="true">▾</span>
           </button>
-          <ul class="dropdown-menu" role="list">
+          <!-- Individual hubs are appended from content/hubs.json by js/hubs.js.
+               "All Hubs" stays static so the menu still works if that fetch fails. -->
+          <ul class="dropdown-menu" role="list" data-hub-menu>
             <li><a href="${prefix}hubs/index.html">All Hubs</a></li>
-            <li><a href="${prefix}hubs/beacon-hill.html">Beacon Hill Hub</a></li>
-            <li><a href="${prefix}hubs/capitol-hill.html">Capitol Hill Hub</a></li>
-            <li><a href="${prefix}hubs/fremont.html">Fremont Hub</a></li>
-            <li><a href="${prefix}hubs/rainier-valley.html">Rainier Valley Hub</a></li>
-            <li><a href="https://www.ravennahub.org/home" target="_blank" rel="noopener noreferrer">Ravenna Hub</a></li>
-            <li><a href="${prefix}hubs/west-seattle.html">West Seattle Hub</a></li>
           </ul>
         </li>
 
@@ -131,6 +127,9 @@
   if (headerEl) {
     headerEl.insertAdjacentHTML('beforebegin', alphaBannerHTML);
     headerEl.outerHTML = headerHTML;
+
+    // Fill the Hubs dropdown from the registry, now that the menu is in the DOM.
+    if (window.SEHHubs) window.SEHHubs.populateNav();
   }
 
   const footerEl = document.getElementById('site-footer-placeholder');

@@ -38,6 +38,33 @@ collections:
                 default: "standard"
                 hint: "'standard' crops the image to a square thumbnail beside the text. Use 'banner' for wide artwork so it runs full width above the text uncropped."
 
+  - name: "hubs"
+    label: "Hubs"
+    files:
+      - label: "Hub List (cards + nav menu)"
+        name: "registry"
+        file: "content/hubs.json"
+        format: "json"
+        fields:
+          - label: "Hubs"
+            name: "hubs"
+            widget: "list"
+            summary: "{{fields.name}}"
+            hint: "Drives the cards on the Hubs page and the Hubs dropdown in the site menu. The hub's own page lives at hubs/<slug>.html."
+            fields:
+              - { label: "Name", name: "name", widget: "string", hint: "Example: Ballard Hubs" }
+              - { label: "Slug", name: "slug", widget: "string", hint: "Matches the filename in hubs/. Example: 'ballard' for hubs/ballard.html." }
+              - { label: "Blurb", name: "blurb", widget: "text", hint: "One line shown on the hub card." }
+              - label: "Status"
+                name: "status"
+                widget: "select"
+                options: ["active", "forming", "inactive"]
+                default: "active"
+              - { label: "Metric label", name: "metricLabel", widget: "string", required: false, hint: "Second tile on the card. Example: Volunteers, Hubs." }
+              - { label: "Metric value", name: "metricValue", widget: "string", required: false, hint: "Leave both metric fields empty to show only the status tile." }
+              - { label: "External website", name: "externalUrl", widget: "string", required: false, hint: "Only for hubs that run their own site instead of a page here. Links out in a new tab." }
+              - { label: "Page filename", name: "page", widget: "string", required: false, hint: "Only if the file is not named <slug>.html." }
+
   - name: "brand"
     label: "Brand Assets"
     files:
