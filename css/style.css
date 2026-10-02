@@ -11,25 +11,121 @@
   padding: 0;
 }
 
+/* =====================================================
+   THEME LAYER
+   -----------------------------------------------------
+   Everything that decides how the site LOOKS lives in the
+   two blocks below. No colour, shadow or radius literal
+   belongs anywhere else in this file -- the rest of the
+   stylesheet only ever reads these via var().
+
+   To try a new look, override these tokens; see
+   css/themes/_template.css for a ready-made starting
+   point and docs/THEMING.md for the how-to.
+
+   `npm run check:theme` fails if a raw colour creeps back
+   in below this layer. It is not wired into the deploy,
+   so run it before you commit.
+   ===================================================== */
+
 :root {
-  --color-primary:   #2e86c1;   /* medium blue      */
-  --color-secondary: #1e8449;   /* forest green     */
-  --color-accent:    #ff4d00;   /* signal orange    */
-  --color-bg:        #f4f6f8;   /* light grey bg    */
-  --color-surface:   #ffffff;
-  --color-text:      #2c3e50;
-  --color-muted:     #5d6d7e;
-  --color-border:    #d5dbdb;
-  --color-footer-bg: #e8ecf0;
+  /* -- Brand ---------------------------------------- */
+  --color-primary:      #2e86c1;   /* medium blue   */
+  --color-primary-dark: #1f618d;   /* deeper blue, gradient end stop */
+  --color-secondary:    #1e8449;   /* forest green  */
+  --color-accent:       #ff4d00;   /* signal orange */
+
+  /* Text placed on top of a filled brand colour (primary, secondary,
+     accent). A skin with a LIGHT primary must darken this or buttons lose
+     contrast -- npm run check:contrast will tell you. Keep the three brand
+     colours similar in lightness so one ink can serve all of them. */
+  --color-on-brand:  #fff;
+
+  /* Text on --color-alert. Separate from --color-on-brand because the alert
+     red stays dark in every theme, so it needs light ink even in a skin
+     whose brand colours have gone pale. */
+  --color-on-alert:  #fff;
+
+  /* -- Neutrals ------------------------------------- */
+  --color-bg:          #f4f6f8;    /* light grey bg */
+  --color-surface:     #ffffff;
+  --color-text:        #2c3e50;
+  --color-muted:       #5d6d7e;
+  --color-border:      #d5dbdb;
+  --color-footer-bg:   #e8ecf0;
   --color-footer-text: #5d6d7e;
-  --header-scale:    1.5;
-  --header-height:   56px;
-  --max-width:       1100px;
-  --radius:          6px;
-  --shadow:          0 2px 8px rgba(0,0,0,0.10);
+
+  /* -- Semantic roles ------------------------------- */
+  --color-success:      #1e8449;
+  --color-danger:       #c0392b;
+  --color-alert:        #b91c1c;   /* alpha banner  */
+
+  /* Tinted panels: notice boxes, callouts, do/don't lists. */
+  --surface-info:     #eaf4fb;
+  --surface-success:  #eafaf1;
+  --surface-warning:  #fef9e7;
+  --surface-danger:   #fef9f0;
+  --border-success:   #a9dfbf;
+  --border-danger:    #f5cba7;
+  --badge-bg:         #fef3c7;
+  --badge-text:       #7c2d12;
+
+  /* Inert backdrops behind artwork and photos (brand guide). */
+  --surface-preview:  #f0f3f5;
+  --surface-media:    #e9edf0;
+
+  /* -- Third-party embeds --------------------------- */
+  /* Google's calendar embed takes a background colour and has no dark
+     mode of its own, so this token stays light in BOTH themes on
+     purpose -- a dark value here leaves Google's dark text unreadable.
+     A skin may tint it, but keep it light. */
+  --embed-calendar-bg: #ffffff;
+  /* Water on the Hub Finder map, which is drawn by the Maps JS API and
+     so can genuinely follow the theme. */
+  --map-water:         #c9dced;
+
+  /* -- Gradients ------------------------------------ */
+  --gradient-hero:  linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  --gradient-brand: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+
+  /* -- Overlays ------------------------------------- */
+  /* Tints layered over whatever is beneath them. Light themes
+     darken, dark themes lighten -- which is why these are tokens
+     rather than one fixed rgba() per component. */
+  --overlay-control:        rgba(0,0,0,0.06);
+  --overlay-control-border: rgba(0,0,0,0.1);
+  --overlay-control-hover:  rgba(0,0,0,0.12);
+  --overlay-nav-hover:      rgba(0,0,0,0.08);
+  --overlay-menu:           rgba(0,0,0,0.04);
+  --overlay-menu-hover:     rgba(0,0,0,0.06);
+  --overlay-chip:           rgba(255, 255, 255, 0.16);
+  --overlay-scrim:          rgba(10, 18, 28, 0.72);
+  --overlay-dialog-border:  rgba(255, 255, 255, 0.18);
+
+  /* -- Typography ----------------------------------- */
+  /* A skin can change the whole voice of the site here. Keep a
+     system fallback last: these load no webfonts. */
+  --font-body:    'Noto Sans', system-ui, -apple-system, sans-serif;
+  --font-heading: var(--font-body);
+  --heading-tracking: normal;
+  --color-heading:    var(--color-primary);
+
+  /* -- Elevation & shape ---------------------------- */
+  --shadow:            0 2px 8px rgba(0,0,0,0.10);
+  --shadow-header:     0 1px 4px rgba(0,0,0,0.1);
+  --shadow-card-hover: 0 4px 16px rgba(0,0,0,0.14);
+  --shadow-modal:      0 24px 60px rgba(0, 0, 0, 0.35);
+  --header-scale:      1.5;
+  --header-height:     56px;
+  --max-width:         1100px;
+  --radius:            6px;
+  --rule-width:        3px;   /* section-title underline */
 }
 
-/* --- Dark Mode Variables ---------------------------- */
+/* --- Dark Mode -------------------------------------- */
+/* Overrides tokens only. Adding an element rule here would put a
+   colour outside the theme layer, so a new theme could not reach
+   it -- keep this block to token redefinitions. */
 [data-theme="dark"] {
   --color-bg:          #111827;
   --color-surface:     #1f2937;
@@ -38,16 +134,32 @@
   --color-border:      #374151;
   --color-footer-bg:   #0d1117;
   --color-footer-text: #9ca3af;
+
+  --surface-info:     #1e3a5f;
+  --surface-success:  #14432a;
+  --surface-warning:  #3d2a0c;
+  --surface-danger:   #3d2a0c;
+  --border-success:   #1e8449;
+  --border-danger:    #c0392b;
+  --badge-bg:         #451a03;
+  --badge-text:       #fcd34d;
+
+  --surface-preview:  #111827;
+  --surface-media:    #111827;
+
+  --color-success:    #6ee7a8;
+  --color-danger:     #f5a397;
+
+  --overlay-control:        rgba(255,255,255,0.1);
+  --overlay-control-border: rgba(255,255,255,0.15);
+  --overlay-control-hover:  rgba(255,255,255,0.2);
+  --overlay-nav-hover:      rgba(255,255,255,0.1);
+  --overlay-menu:           rgba(255,255,255,0.06);
+  --overlay-menu-hover:     rgba(255,255,255,0.08);
+
+  --map-water:        #0b2030;
+
   --shadow:            0 2px 8px rgba(0,0,0,0.40);
-}
-
-[data-theme="dark"] .notice       { background: #1e3a5f; }
-[data-theme="dark"] .notice.green  { background: #14432a; }
-[data-theme="dark"] .notice.orange { background: #3d2a0c; }
-
-[data-theme="dark"] .alpha-warning-badge {
-  background: #451a03;
-  color: #fcd34d;
 }
 
 html {
@@ -55,7 +167,7 @@ html {
 }
 
 body {
-  font-family: 'Noto Sans', system-ui, -apple-system, sans-serif;
+  font-family: var(--font-body);
   font-size: 1rem;
   line-height: 1.6;
   color: var(--color-text);
@@ -84,7 +196,7 @@ img {
   top: -100%;
   left: 0;
   background: var(--color-primary);
-  color: #fff;
+  color: var(--color-on-brand);
   padding: 0.5rem 1rem;
   z-index: 9999;
   font-weight: 600;
@@ -95,8 +207,8 @@ img {
 
 /* --- Alpha Banner ---------------------------------- */
 .alpha-site-banner {
-  background: #b91c1c;
-  color: #fff;
+  background: var(--color-alert);
+  color: var(--color-on-alert);
   padding: 0.65rem 1rem;
   display: flex;
   align-items: center;
@@ -113,7 +225,7 @@ img {
   align-items: center;
   padding: 0.15rem 0.55rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.16);
+  background: var(--overlay-chip);
   text-transform: uppercase;
   letter-spacing: 0.04em;
   font-size: 0.72rem;
@@ -156,7 +268,7 @@ body.alpha-warning-open {
 .alpha-warning-backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(10, 18, 28, 0.72);
+  background: var(--overlay-scrim);
   backdrop-filter: blur(3px);
 }
 
@@ -166,8 +278,8 @@ body.alpha-warning-open {
   width: min(100%, 680px);
   background: var(--color-surface);
   border-radius: 16px;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: var(--shadow-modal);
+  border: 1px solid var(--overlay-dialog-border);
   padding: 1.5rem 1.5rem 1.25rem;
 }
 
@@ -175,8 +287,8 @@ body.alpha-warning-open {
   display: inline-flex;
   align-items: center;
   border-radius: 999px;
-  background: #fef3c7;
-  color: #7c2d12;
+  background: var(--badge-bg);
+  color: var(--badge-text);
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -210,7 +322,7 @@ body.alpha-warning-open {
 .site-header {
   background: var(--color-footer-bg);
   color: var(--color-text);
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  box-shadow: var(--shadow-header);
   position: sticky;
   top: 0;
   z-index: 100;
@@ -300,8 +412,8 @@ body.alpha-warning-open {
   justify-content: center;
   width: calc(36px * var(--header-scale));
   height: calc(36px * var(--header-scale));
-  background: rgba(0,0,0,0.06);
-  border: 1px solid rgba(0,0,0,0.1);
+  background: var(--overlay-control);
+  border: 1px solid var(--overlay-control-border);
   border-radius: 50%;
   color: var(--color-text);
   cursor: pointer;
@@ -312,14 +424,31 @@ body.alpha-warning-open {
   padding: 0;
 }
 .theme-toggle:hover {
-  background: rgba(0,0,0,0.12);
+  background: var(--overlay-control-hover);
 }
-[data-theme="dark"] .theme-toggle {
-  background: rgba(255,255,255,0.1);
-  border-color: rgba(255,255,255,0.15);
+
+/* --- Theme picker (demo control, see js/theme.js) ---- */
+.theme-picker {
+  display: flex;
+  align-items: center;
 }
-[data-theme="dark"] .theme-toggle:hover {
-  background: rgba(255,255,255,0.2);
+.theme-picker-select {
+  font-family: inherit;
+  font-size: calc(0.78rem * var(--header-scale));
+  color: var(--color-text);
+  background: var(--overlay-control);
+  border: 1px solid var(--overlay-control-border);
+  border-radius: var(--radius);
+  padding: 0.3em 0.5em;
+  max-width: 14em;
+  cursor: pointer;
+}
+.theme-picker-select:hover {
+  background: var(--overlay-control-hover);
+}
+.theme-picker-select:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }
 
 /* --- Navigation ------------------------------------- */
@@ -364,14 +493,8 @@ body.alpha-warning-open {
 .nav-list > li > button:hover,
 .nav-list > li > a.active,
 .nav-list > li > button.active {
-  background: rgba(0,0,0,0.08);
+  background: var(--overlay-nav-hover);
   text-decoration: none;
-}
-[data-theme="dark"] .nav-list > li > a:hover,
-[data-theme="dark"] .nav-list > li > button:hover,
-[data-theme="dark"] .nav-list > li > a.active,
-[data-theme="dark"] .nav-list > li > button.active {
-  background: rgba(255,255,255,0.1);
 }
 
 /* Dropdown caret */
@@ -425,8 +548,8 @@ main {
 
 /* --- Page Hero -------------------------------------- */
 .page-hero {
-  background: linear-gradient(135deg, var(--color-primary) 0%, #1f618d 100%);
-  color: #fff;
+  background: var(--gradient-hero);
+  color: var(--color-on-brand);
   padding: 3rem 1.5rem;
   text-align: center;
   margin-bottom: 2.5rem;
@@ -445,7 +568,9 @@ main {
 
 /* --- Section Headings ------------------------------- */
 h1, h2, h3 {
-  color: var(--color-primary);
+  font-family: var(--font-heading);
+  letter-spacing: var(--heading-tracking);
+  color: var(--color-heading);
   line-height: 1.25;
 }
 h1 { font-size: 1.9rem; margin-bottom: 1rem; }
@@ -464,11 +589,12 @@ h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
 }
 
 .section-title {
+  font-family: var(--font-heading);
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
   padding-bottom: 0.5rem;
-  border-bottom: 3px solid var(--color-secondary);
+  border-bottom: var(--rule-width) solid var(--color-secondary);
   display: inline-block;
 }
 
@@ -490,7 +616,7 @@ h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
 }
 .post-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.14);
+  box-shadow: var(--shadow-card-hover);
 }
 
 .post-card.has-image {
@@ -503,7 +629,7 @@ h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
   display: block;
   aspect-ratio: 1 / 1;
   overflow: hidden;
-  background: linear-gradient(135deg, #2e86c1 0%, #1e8449 100%);
+  background: var(--gradient-brand);
 }
 
 .post-card.has-image .post-card-media {
@@ -559,7 +685,7 @@ h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
 .post-tag {
   display: inline-block;
   background: var(--color-secondary);
-  color: #fff;
+  color: var(--color-on-brand);
   font-size: 0.75rem;
   font-weight: 600;
   padding: 0.2rem 0.6rem;
@@ -714,7 +840,7 @@ h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
 
 .event-date-block {
   background: var(--color-primary);
-  color: #fff;
+  color: var(--color-on-brand);
   min-width: 80px;
   display: flex;
   flex-direction: column;
@@ -835,7 +961,7 @@ h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
 }
 .hub-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.14);
+  box-shadow: var(--shadow-card-hover);
 }
 .hub-card h2 {
   font-size: 1.1rem;
@@ -861,11 +987,11 @@ h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
 }
 .btn-primary {
   background: var(--color-primary);
-  color: #fff;
+  color: var(--color-on-brand);
 }
 .btn-secondary {
   background: var(--color-secondary);
-  color: #fff;
+  color: var(--color-on-brand);
 }
 .btn-outline {
   background: transparent;
@@ -999,11 +1125,11 @@ h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
 }
 .btn-mail {
   background: var(--color-secondary);
-  color: #fff;
+  color: var(--color-on-brand);
 }
 .btn-donate {
   background: var(--color-accent);
-  color: #fff;
+  color: var(--color-on-brand);
 }
 
 .footer-bottom {
@@ -1038,7 +1164,7 @@ h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
 
 /* Notice / info box */
 .notice {
-  background: #eaf4fb;
+  background: var(--surface-info);
   border-left: 4px solid var(--color-primary);
   border-radius: 0 var(--radius) var(--radius) 0;
   padding: 1rem 1.25rem;
@@ -1046,11 +1172,11 @@ h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
   font-size: 0.9rem;
 }
 .notice.green {
-  background: #eafaf1;
+  background: var(--surface-success);
   border-color: var(--color-secondary);
 }
 .notice.orange {
-  background: #fef9e7;
+  background: var(--surface-warning);
   border-color: var(--color-accent);
 }
 
@@ -1072,6 +1198,12 @@ h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
   .header-inner {
     flex-wrap: wrap;
     padding: calc(0.75rem * var(--header-scale)) calc(1rem * var(--header-scale));
+  }
+
+  /* Shares the top row with the logo and two buttons, so it has to give. */
+  .theme-picker-select {
+    max-width: 8.5em;
+    font-size: 0.78rem;
   }
 
   .nav-list {
@@ -1098,20 +1230,14 @@ h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
     box-shadow: none;
     border: none;
     border-top: 1px solid var(--color-border);
-    background: rgba(0,0,0,0.04);
+    background: var(--overlay-menu);
   }
   .dropdown-menu a {
     color: var(--color-text);
     padding: calc(0.5rem * var(--header-scale)) calc(1.5rem * var(--header-scale));
   }
   .dropdown-menu a:hover {
-    background: rgba(0,0,0,0.06);
-  }
-  [data-theme="dark"] .dropdown-menu {
-    background: rgba(255,255,255,0.06);
-  }
-  [data-theme="dark"] .dropdown-menu a:hover {
-    background: rgba(255,255,255,0.08);
+    background: var(--overlay-menu-hover);
   }
 
   main {
@@ -1196,7 +1322,7 @@ h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
   height: 32px;
   border-radius: 50%;
   background: var(--color-primary);
-  color: #fff;
+  color: var(--color-on-brand);
   font-weight: 700;
   font-size: 0.9rem;
   flex-shrink: 0;
@@ -1289,7 +1415,7 @@ h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
   display: block;
   width: 6px;
   height: 10px;
-  border: solid #fff;
+  border: solid var(--color-on-brand);
   border-width: 0 2.5px 2.5px 0;
   transform: rotate(45deg) scale(0);
   transition: transform 0.12s;

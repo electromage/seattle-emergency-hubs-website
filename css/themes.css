@@ -1,0 +1,237 @@
+/* =====================================================
+   EXAMPLE THEMES ("skins")
+   -----------------------------------------------------
+   Each block below is one complete look. Nothing here is
+   active until <html> carries a matching data-skin, which
+   js/theme.js sets from the picker in the site header:
+
+     <html data-skin="rainier">              light
+     <html data-skin="rainier" data-theme="dark">  dark
+
+   With no data-skin, the site uses the default palette in
+   css/style.css -- so this file is inert until someone
+   chooses a theme.
+
+   SELECTOR PATTERN -- please copy it exactly:
+
+     [data-skin="x"]:not([data-theme="dark"]) { }   light
+     [data-skin="x"][data-theme="dark"]       { }   dark
+
+   Both are specificity (0,2,0), so they beat the (0,1,0)
+   :root and [data-theme="dark"] blocks in style.css, and
+   they are mutually exclusive so a skin's light values can
+   never leak into dark mode. A bare [data-skin="x"] would
+   be (0,1,0) and would fight with style.css's dark block.
+
+   A skin only lists what it changes; every token it omits
+   falls back to style.css. See docs/THEMING.md.
+   ===================================================== */
+
+
+/* =====================================================
+   RAINIER -- civic and settled. Evergreen and stone, a
+   serif voice, square corners, almost no shadow.
+   ===================================================== */
+[data-skin="rainier"]:not([data-theme="dark"]) {
+  --color-primary:      #1b5e4b;
+  --color-primary-dark: #0f3d31;
+  --color-secondary:    #7a5c2e;
+  --color-accent:       #9a4f12;
+  --color-success:      #14502e;
+
+  --color-bg:           #f5f3ee;
+  --color-surface:      #fffefb;
+  --color-text:         #26302c;
+  --color-muted:        #5c6660;
+  --color-border:       #d8d2c4;
+  --color-footer-bg:    #e8e4da;
+  --color-footer-text:  #5c6660;
+
+  --surface-info:       #e7f0ec;
+  --surface-success:    #e6efe4;
+  --surface-warning:    #f7efdd;
+  --surface-danger:     #f6e9e2;
+
+  --font-body:    Georgia, 'Iowan Old Style', 'Times New Roman', serif;
+  --font-heading: var(--font-body);
+  --color-heading: var(--color-primary);
+
+  --radius:       2px;
+  --rule-width:   2px;
+  --shadow:            0 1px 2px rgba(38, 48, 44, 0.10);
+  --shadow-header:     0 1px 0 rgba(38, 48, 44, 0.12);
+  --shadow-card-hover: 0 2px 6px rgba(38, 48, 44, 0.14);
+  --header-scale: 1.35;
+}
+[data-skin="rainier"][data-theme="dark"] {
+  --color-on-brand:     #10201a;
+  --color-primary:      #6bbf9e;
+  --color-primary-dark: #3d8f74;
+  --color-secondary:    #c9a066;
+  --color-accent:       #e08b4a;
+
+  --color-bg:           #1a1f1d;
+  --color-surface:      #242b28;
+  --color-text:         #e8e4da;
+  --color-muted:        #a3ada7;
+  --color-border:       #3a423e;
+  --color-footer-bg:    #121715;
+  --color-footer-text:  #a3ada7;
+
+  --surface-info:       #1e3630;
+  --surface-success:    #1d3524;
+  --surface-warning:    #3a2f16;
+  --surface-danger:     #3a251e;
+
+  --font-body:    Georgia, 'Iowan Old Style', 'Times New Roman', serif;
+  --font-heading: var(--font-body);
+  --color-heading: var(--color-primary);
+
+  --radius:       2px;
+  --rule-width:   2px;
+  --header-scale: 1.35;
+}
+
+
+/* =====================================================
+   SOUND -- open and modern. Teal on near-white, big soft
+   corners, roomy header, geometric sans.
+   ===================================================== */
+[data-skin="sound"]:not([data-theme="dark"]) {
+  --color-primary:      #0f766e;
+  --color-primary-dark: #115e59;
+  --color-secondary:    #0369a1;
+  --color-accent:       #b8430a;
+  --color-success:      #10562f;
+
+  --color-bg:           #fbfdfd;
+  --color-surface:      #ffffff;
+  --color-text:         #14282b;
+  --color-muted:        #5a7378;
+  --color-border:       #dbe8e8;
+  --color-footer-bg:    #eef6f6;
+  --color-footer-text:  #5a7378;
+
+  --surface-info:       #e6f4f4;
+  --surface-success:    #e7f6ee;
+  --surface-warning:    #fdf3e3;
+  --surface-danger:     #fdeee8;
+
+  --font-body:    'Avenir Next', Avenir, 'Segoe UI', system-ui, sans-serif;
+  --font-heading: var(--font-body);
+  --heading-tracking: -0.015em;
+  --color-heading: var(--color-text);
+
+  --radius:       14px;
+  --rule-width:   4px;
+  --shadow:            0 1px 3px rgba(20, 40, 43, 0.06), 0 8px 24px rgba(20, 40, 43, 0.06);
+  --shadow-header:     0 1px 0 rgba(20, 40, 43, 0.06);
+  --shadow-card-hover: 0 12px 32px rgba(20, 40, 43, 0.12);
+  --header-scale: 1.6;
+}
+[data-skin="sound"][data-theme="dark"] {
+  --color-on-brand:     #04252a;
+  --color-primary:      #5eead4;
+  --color-primary-dark: #2dd4bf;
+  --color-secondary:    #7dd3fc;
+  --color-accent:       #fb923c;
+
+  --color-bg:           #071a1c;
+  --color-surface:      #0f2a2d;
+  --color-text:         #e6f4f4;
+  --color-muted:        #93b4b8;
+  --color-border:       #1d4145;
+  --color-footer-bg:    #041214;
+  --color-footer-text:  #93b4b8;
+
+  --surface-info:       #0d3438;
+  --surface-success:    #0d3327;
+  --surface-warning:    #3b2c12;
+  --surface-danger:     #3b1f19;
+
+  --font-body:    'Avenir Next', Avenir, 'Segoe UI', system-ui, sans-serif;
+  --font-heading: var(--font-body);
+  --heading-tracking: -0.015em;
+  --color-heading: var(--color-text);
+
+  --radius:       14px;
+  --rule-width:   4px;
+  --shadow-card-hover: 0 12px 32px rgba(0, 0, 0, 0.5);
+  --header-scale: 1.6;
+}
+
+
+/* =====================================================
+   BEACON -- high-visibility. Reads like emergency
+   signage: navy and safety amber, heavy rules, strong
+   borders, larger type. The most legible of the four.
+   ===================================================== */
+[data-skin="beacon"]:not([data-theme="dark"]) {
+  --color-primary:      #10375c;
+  --color-primary-dark: #081f36;
+  --color-secondary:    #0b6b3a;
+  --color-accent:       #d7263d;
+
+  --color-bg:           #ffffff;
+  --color-surface:      #ffffff;
+  --color-text:         #10181f;
+  --color-muted:        #44525e;
+  --color-border:       #10375c;
+  --color-footer-bg:    #10375c;
+  --color-footer-text:  #e8eef4;
+
+  --surface-info:       #e4edf6;
+  --surface-success:    #e2f0e7;
+  --color-success:      #0b4a28;
+  --surface-warning:    #fff4d6;
+  --surface-danger:     #fbe6e9;
+  --badge-bg:           #ffc400;
+  --badge-text:         #10181f;
+
+  --font-body:    'Source Sans Pro', 'Segoe UI', Tahoma, system-ui, sans-serif;
+  --font-heading: var(--font-body);
+  --heading-tracking: 0.01em;
+  --color-heading: var(--color-primary);
+
+  --radius:       0px;
+  --rule-width:   5px;
+  --shadow:            0 0 0 1px rgba(16, 55, 92, 0.22);
+  --shadow-header:     0 3px 0 var(--color-accent);
+  --shadow-card-hover: 0 0 0 2px var(--color-primary);
+  --header-scale: 1.5;
+}
+[data-skin="beacon"][data-theme="dark"] {
+  --color-primary:      #ffc400;
+  --color-primary-dark: #d9a400;
+  --color-secondary:    #4ade80;
+  --color-accent:       #ff5c6c;
+  --color-on-brand:     #10181f;
+  --color-on-alert:     #ffffff;
+
+  --color-bg:           #0a0f14;
+  --color-surface:      #141c24;
+  --color-text:         #f2f6fa;
+  --color-muted:        #a7b6c2;
+  --color-border:       #ffc400;
+  --color-footer-bg:    #05090d;
+  --color-footer-text:  #d7e2ec;
+
+  --surface-info:       #14283a;
+  --surface-success:    #10301f;
+  --surface-warning:    #3a2e08;
+  --surface-danger:     #3a141a;
+  --badge-bg:           #ffc400;
+  --badge-text:         #10181f;
+
+  --font-body:    'Source Sans Pro', 'Segoe UI', Tahoma, system-ui, sans-serif;
+  --font-heading: var(--font-body);
+  --heading-tracking: 0.01em;
+  --color-heading: var(--color-primary);
+
+  --radius:       0px;
+  --rule-width:   5px;
+  --shadow:            0 0 0 1px rgba(255, 196, 0, 0.30);
+  --shadow-header:     0 3px 0 var(--color-accent);
+  --shadow-card-hover: 0 0 0 2px var(--color-primary);
+  --header-scale: 1.5;
+}

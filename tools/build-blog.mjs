@@ -75,8 +75,9 @@ function renderPage(post, bodyHtml) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="${escapeHtml(post.description || post.excerpt)}" />
   <title>${escapeHtml(post.title)} – Seattle Emergency Hubs</title>
-  <script>try{if(localStorage.getItem("seh-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
+  <script>try{var q=new URLSearchParams(location.search),t=q.get("theme"),m=q.get("mode");if(t!==null)localStorage.setItem("seh-skin",t);if(m==="dark"||m==="light")localStorage.setItem("seh-theme",m);var s=localStorage.getItem("seh-skin");if(s)document.documentElement.setAttribute("data-skin",s);if(localStorage.getItem("seh-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
   <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/themes.css" />
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -99,6 +100,7 @@ ${indentedBody}
   <script src="../js/hubs.js"></script>
   <script src="../js/components.js"></script>
   <script src="../js/main.js"></script>
+  <script src="../js/theme.js"></script>
 </body>
 </html>
 `;

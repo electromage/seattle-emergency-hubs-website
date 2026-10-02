@@ -1,0 +1,179 @@
+/* =====================================================
+   SKIN TEMPLATE
+   -----------------------------------------------------
+   A starting point for a new look. Copy BOTH blocks
+   below into css/themes.css, replace "myskin" with your
+   own id, and add the id to the SKINS list in
+   js/theme.js so it shows up in the header picker:
+
+     { id: 'myskin', label: 'My Skin - Description',
+       note: 'A few words for the tooltip' }
+
+   Then run:  npm run check
+
+   Nothing else needs editing. Every page already loads
+   css/themes.css, so a new skin reaches the whole site --
+   blog posts, hub pages, the Hub Finder -- at once.
+
+   SELECTOR PATTERN -- copy it exactly:
+
+     [data-skin="x"]:not([data-theme="dark"])   light
+     [data-skin="x"][data-theme="dark"]         dark
+
+   Both are specificity (0,2,0), so they outrank the
+   (0,1,0) :root and [data-theme="dark"] blocks in
+   style.css, and they are mutually exclusive so light
+   values can never leak into dark mode. A bare
+   [data-skin="x"] is only (0,1,0) and WILL fight with
+   style.css's dark block -- that is the one mistake to
+   avoid here.
+
+   Delete any token you are happy with: anything you omit
+   falls back to css/style.css. A ten-line skin is fine.
+
+   Full guide: docs/THEMING.md
+   ===================================================== */
+
+
+/* ---------- light ---------- */
+[data-skin="myskin"]:not([data-theme="dark"]) {
+
+  /* -- Brand ----------------------------------------- */
+  --color-primary:      #2e86c1;  /* links, buttons, hero, focus rings */
+  --color-primary-dark: #1f618d;  /* end stop of the hero gradient     */
+  --color-secondary:    #1e8449;  /* secondary buttons, post tags      */
+  --color-accent:       #ff4d00;  /* donate button, warning notices    */
+
+  /* Ink on filled brand colours. If your primary/secondary/accent are
+     LIGHT, this must go dark -- npm run check:contrast will tell you.
+     Keep the three brand colours similar in lightness so one ink serves
+     all three. */
+  --color-on-brand:     #fff;
+  /* Ink on --color-alert (the alpha banner), which stays dark red in
+     every theme -- so this usually stays light even when the one above
+     goes dark. */
+  --color-on-alert:     #fff;
+
+  /* -- Neutrals -------------------------------------- */
+  --color-bg:           #f4f6f8;  /* page background      */
+  --color-surface:      #ffffff;  /* cards, dialogs       */
+  --color-text:         #2c3e50;  /* body copy            */
+  --color-muted:        #5d6d7e;  /* captions, meta text  */
+  --color-border:       #d5dbdb;  /* hairlines, dividers  */
+  --color-footer-bg:    #e8ecf0;  /* also the site header */
+  --color-footer-text:  #5d6d7e;
+
+  /* -- Semantic roles -------------------------------- */
+  --color-success:      #1e8449;
+  --color-danger:       #c0392b;
+  --color-alert:        #b91c1c;  /* alpha banner background */
+
+  /* -- Tinted panels --------------------------------- */
+  /* Notice boxes, callouts, do/don't lists. Keep these close to
+     --color-bg in lightness or they read as errors. */
+  --surface-info:       #eaf4fb;
+  --surface-success:    #eafaf1;
+  --surface-warning:    #fef9e7;
+  --surface-danger:     #fef9f0;
+  --border-success:     #a9dfbf;
+  --border-danger:      #f5cba7;
+  --badge-bg:           #fef3c7;
+  --badge-text:         #7c2d12;
+
+  /* Inert backdrops behind logos and photos. Deliberately neutral --
+     artwork should not pick up a brand tint. */
+  --surface-preview:    #f0f3f5;
+  --surface-media:      #e9edf0;
+
+  /* -- Typography ------------------------------------ */
+  /* Changing these does more for "a different look" than colour alone.
+     Load no webfonts: keep a system fallback last. */
+  --font-body:          'Noto Sans', system-ui, -apple-system, sans-serif;
+  --font-heading:       var(--font-body);
+  --heading-tracking:   normal;
+  --color-heading:      var(--color-primary);
+
+  /* -- Gradients ------------------------------------- */
+  --gradient-hero:  linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  --gradient-brand: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+
+  /* -- Overlays -------------------------------------- */
+  /* Tints layered over whatever sits beneath them, so they must stay
+     translucent. Light themes darken; dark themes lighten. */
+  --overlay-control:        rgba(0,0,0,0.06);
+  --overlay-control-border: rgba(0,0,0,0.1);
+  --overlay-control-hover:  rgba(0,0,0,0.12);
+  --overlay-nav-hover:      rgba(0,0,0,0.08);
+  --overlay-menu:           rgba(0,0,0,0.04);
+  --overlay-menu-hover:     rgba(0,0,0,0.06);
+  --overlay-chip:           rgba(255, 255, 255, 0.16);  /* on the alpha banner */
+  --overlay-scrim:          rgba(10, 18, 28, 0.72);     /* behind modals       */
+  --overlay-dialog-border:  rgba(255, 255, 255, 0.18);
+
+  /* -- Elevation & shape ----------------------------- */
+  --shadow:            0 2px 8px rgba(0,0,0,0.10);
+  --shadow-header:     0 1px 4px rgba(0,0,0,0.1);
+  --shadow-card-hover: 0 4px 16px rgba(0,0,0,0.14);
+  --shadow-modal:      0 24px 60px rgba(0, 0, 0, 0.35);
+  --radius:            6px;   /* 0 = square, 14px = pill-ish cards */
+  --rule-width:        3px;   /* section-title underline */
+
+  /* -- Layout ---------------------------------------- */
+  /* --header-scale multiplies the header's padding and control sizes:
+     1 is compact, 1.5 is the default, 1.6 is roomy. */
+  --header-scale:      1.5;
+  --header-height:     56px;
+  --max-width:         1100px;
+
+  /* -- Third-party embeds ---------------------------- */
+  /* Google's calendar embed takes only a background colour and has no
+     dark mode, so keep this LIGHT in both blocks -- a dark value leaves
+     Google's dark text unreadable. */
+  --embed-calendar-bg: #ffffff;
+  /* Water on the Hub Finder map, which the Maps JS API draws, so it can
+     genuinely follow the theme. */
+  --map-water:         #c9dced;
+}
+
+
+/* ---------- dark ---------- */
+/* Only what must differ; anything omitted falls back to style.css's dark
+   block, then to :root. A dark skin is usually much shorter. */
+[data-skin="myskin"][data-theme="dark"] {
+  --color-bg:           #111827;
+  --color-surface:      #1f2937;
+  --color-text:         #e2e8f0;
+  --color-muted:        #94a3b8;
+  --color-border:       #374151;
+  --color-footer-bg:    #0d1117;
+  --color-footer-text:  #9ca3af;
+
+  --surface-info:       #1e3a5f;
+  --surface-success:    #14432a;
+  --surface-warning:    #3d2a0c;
+  --surface-danger:     #3d2a0c;
+  --badge-bg:           #451a03;
+  --badge-text:         #fcd34d;
+
+  --surface-preview:    #111827;
+  --surface-media:      #111827;
+
+  /* Brand green and red are too dark to read on a dark surface, so the
+     semantic TEXT colours lighten while their panels stay dark. Change
+     each pair together. */
+  --color-success:      #6ee7a8;
+  --color-danger:       #f5a397;
+
+  /* Overlays flip: lighten instead of darken. */
+  --overlay-control:        rgba(255,255,255,0.1);
+  --overlay-control-border: rgba(255,255,255,0.15);
+  --overlay-control-hover:  rgba(255,255,255,0.2);
+  --overlay-nav-hover:      rgba(255,255,255,0.1);
+  --overlay-menu:           rgba(255,255,255,0.06);
+  --overlay-menu-hover:     rgba(255,255,255,0.08);
+
+  /* Deeper, because the same shadow is invisible on a dark ground. */
+  --shadow:             0 2px 8px rgba(0,0,0,0.40);
+
+  --map-water:          #0b2030;
+}

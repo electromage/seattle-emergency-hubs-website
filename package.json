@@ -5,13 +5,18 @@
   "description": "Static site for Seattle Emergency Hubs, with blog post pages generated from CMS markdown.",
   "scripts": {
     "build:blog": "node tools/build-blog.mjs",
-    "migrate:posts": "node tools/migrate-posts.mjs"
+    "check": "npm run check:theme && npm run check:contrast && npm run test:theme",
+    "check:contrast": "node tools/check-theme-contrast.mjs",
+    "check:theme": "node tools/check-theme.mjs",
+    "migrate:posts": "node tools/migrate-posts.mjs",
+    "test:theme": "node tools/test-theme.mjs"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
     "marked": "^12.0.2"
   },
   "devDependencies": {
+    "postcss": "^8.5.28",
     "turndown": "^7.1.3"
   }
 }

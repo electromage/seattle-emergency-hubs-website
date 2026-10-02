@@ -100,6 +100,50 @@ Please resize photos to roughly 1600px wide before uploading — the CMS commits
 
 There is no public upload form; this is a static site with no backend to receive one. Members email photos to the address on the page, and someone with CMS access adds them. That also keeps the "select" curation step and the usage-permission record in the hands of a coordinator.
 
+## Theming the site
+
+The site ships **four complete looks**, switchable from the dropdown next to the
+dark-mode toggle in the header. The choice is remembered per browser and follows
+the visitor across every page — blog posts, hub pages, calendar, Hub Finder.
+
+To show options to a group, send links instead of asking them to hunt for the
+picker:
+
+| Link | What they see |
+| --- | --- |
+| `?theme=beacon` | Beacon — high visibility |
+| `?theme=sound&mode=dark` | Sound — teal, dark mode |
+| `?theme=rainier` | Rainier — evergreen, serif |
+| `?theme=` | Back to the default |
+
+e.g. `https://<site>/index.html?theme=sound`. The theme sticks as they browse.
+
+Each look has its own dark mode, so the toggle keeps working in all four.
+
+Adding a look takes three steps and no page edits: copy the two blocks from
+`css/themes/_template.css` into `css/themes.css`, add one line to the `SKINS`
+list in `js/theme.js`, and run `npm run check`.
+
+To hide the picker when the demo is over, set `SHOW_PICKER = false` at the top of
+`js/theme.js`.
+
+Every colour, shadow, font and radius lives in one **theme layer** at the top of
+`css/style.css`; the rest of the stylesheet only reads those tokens via `var()`.
+That is what makes the look swappable. Two checks keep it that way — run both
+before committing, as neither is part of the Netlify build:
+
+```bash
+npm run check           # runs all three of the below
+npm run check:theme     # fails if a raw colour creeps in below the theme layer
+npm run check:contrast  # fails if any theme is unreadable, light or dark
+npm run test:theme      # fails if theme switching itself breaks
+```
+
+See **[docs/THEMING.md](docs/THEMING.md)** for the full guide, including the
+selector pattern for a new skin, how the dark/light axis interacts, and what the
+theme deliberately cannot reach (the Google My Maps embed, and the calendar's
+single `bgcolor`).
+
 ## Calendar embed troubleshooting
 
 If the calendar iframe loads but shows no events:
