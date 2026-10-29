@@ -115,6 +115,9 @@ const PAIRS = [
   ['--color-muted',       '--color-bg',           4.5, 'muted text on page'],
   ['--color-muted',       '--color-surface',      4.5, 'muted text on card'],
   ['--color-heading',     '--color-bg',           3.0, 'heading on page'],
+  ['--color-link',        '--color-bg',           4.5, 'link on page'],
+  ['--color-link',        '--color-surface',      4.5, 'link on card'],
+  ['--color-secondary-text', '--color-surface',   4.5, 'secondary text on card'],
   ['--color-on-brand',    '--color-primary',      4.5, 'button text on primary'],
   ['--color-on-brand',    '--color-secondary',    4.5, 'button text on secondary'],
   ['--color-on-brand',    '--color-accent',       4.5, 'button text on accent'],
@@ -141,6 +144,14 @@ const PREEXISTING = new Set([
   'default/dark/button text on accent',
   'default/light/footer text',
   'default/light/success text on its panel',
+  /* Same Medium Blue as above, as link text. Checked only since links got
+     their own token; the shortfall itself is as old as the brand. */
+  'default/light/link on page',
+  'default/light/link on card',
+  'default/dark/link on page',
+  'default/dark/link on card',
+  /* Forest Green "Read more" on the dark card, likewise old and brand. */
+  'default/dark/secondary text on card',
 ]);
 
 /**

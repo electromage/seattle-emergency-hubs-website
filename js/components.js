@@ -71,6 +71,10 @@
           <a href="${prefix}resources.html">Resources</a>
         </li>
 
+        <li>
+          <a href="${prefix}contact.html">Contact</a>
+        </li>
+
       </ul>
     </nav>
 
@@ -114,6 +118,7 @@
         <a href="${prefix}resources.html">Resources</a>
         <a href="${prefix}start-a-hub.html">Start a Hub</a>
         <a href="${prefix}about.html">About Us</a>
+        <a href="${prefix}contact.html">Contact</a>
         <a href="${prefix}branding.html">Brand Assets</a>
         <a href="https://www.youtube.com/c/SeattleemergencyhubsOrg2015" target="_blank" rel="noopener noreferrer">YouTube</a>
       </nav>
