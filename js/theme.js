@@ -2,7 +2,7 @@
  * Seattle Emergency Hubs - Theme switching
  *
  * One place to add a look: the SKINS list below, plus a matching block in
- * css/themes.css. Everything else -- the picker in the header, the saved
+ * css/themes.css. Everything else -- the picker in the footer, the saved
  * choice, the shareable link, the Google embeds -- follows from it.
  *
  * Two independent axes:
@@ -141,20 +141,25 @@
     ];
   }
 
-  /* ---- the picker in the site header ---- */
+  /* ---- the picker in the site footer ----
+     A demo control for comparing looks, not a visitor feature, so it sits
+     small and out of the way below the footer links. */
 
   function mountPicker() {
     if (!SHOW_PICKER) return;
-    var header = document.querySelector('.header-inner');
-    if (!header || header.querySelector('.theme-picker')) return;
+    var footer = document.querySelector('.footer-inner');
+    if (!footer || footer.querySelector('.theme-picker')) return;
 
     var wrap = document.createElement('div');
     wrap.className = 'theme-picker';
 
+    var label = document.createElement('label');
+    label.setAttribute('for', 'theme-picker');
+    label.textContent = 'Theme preview';
+
     var select = document.createElement('select');
     select.id = 'theme-picker';
     select.className = 'theme-picker-select';
-    select.setAttribute('aria-label', 'Preview a site theme');
     select.title = 'Preview a different look and feel';
 
     var active = currentSkin();
@@ -169,15 +174,12 @@
 
     select.addEventListener('change', function () { applySkin(select.value); });
 
+    wrap.appendChild(label);
     wrap.appendChild(select);
-
-    /* Sit just before the dark-mode toggle so the two controls read as a pair. */
-    var toggle = header.querySelector('.theme-toggle');
-    if (toggle) header.insertBefore(wrap, toggle);
-    else header.appendChild(wrap);
+    footer.appendChild(wrap);
   }
 
-  /* components.js injects the header synchronously, but run on DOM ready too
+  /* components.js injects the footer synchronously, but run on DOM ready too
      in case script order changes. */
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', mountPicker);

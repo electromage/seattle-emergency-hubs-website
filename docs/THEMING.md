@@ -1,7 +1,7 @@
 # Theming
 
 The site ships four complete looks. Anyone can switch between them from the
-picker in the site header, and the choice follows them across every page —
+picker in the site footer, and the choice follows them across every page —
 blog posts, hub pages, the calendar, the Hub Finder.
 
 This exists so you can put real options in front of people and let them react
@@ -11,8 +11,8 @@ to a working site rather than a mockup, without touching a word of content.
 
 ## 1. Showing the options to volunteers
 
-**In the header.** Every page has a theme dropdown next to the dark-mode
-toggle. Pick a look; it applies immediately and is remembered in that
+**In the footer.** Every page has a small "Theme preview" dropdown at the
+bottom of the footer. Pick a look; it applies immediately and is remembered in that
 browser, so clicking through to the blog or the map keeps it.
 
 **By link.** Send someone straight into one look:

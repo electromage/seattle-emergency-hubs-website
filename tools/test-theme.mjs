@@ -38,8 +38,8 @@ function makeEnv(search = '', stored = {}) {
     addEventListener(t, fn) { this['on' + t] = fn; },
     querySelector() { return null; }, insertBefore(n) { this.children.push(n); },
   });
-  const header = { ...el(), _picker: null,
-    querySelector(sel) { return sel === '.theme-picker' ? this._picker : (sel === '.theme-toggle' ? null : null); },
+  const footer = { ...el(), _picker: null,
+    querySelector(sel) { return sel === '.theme-picker' ? this._picker : null; },
     appendChild(c) { this.children.push(c); this._picker = c; } };
 
   const env = {
@@ -58,12 +58,12 @@ function makeEnv(search = '', stored = {}) {
       readyState: 'complete',
       documentElement: null,
       querySelectorAll: () => [],
-      querySelector: (s) => (s === '.header-inner' ? header : null),
+      querySelector: (s) => (s === '.footer-inner' ? footer : null),
       createElement: () => el(),
       addEventListener: (t, fn) => { (listeners[t] = listeners[t] || []).push(fn); },
       dispatchEvent: (e) => { (listeners[e.type] || []).forEach((f) => f(e)); },
     },
-    attrs, store, header, listeners,
+    attrs, store, footer, listeners,
   };
   env.document.documentElement = env.documentElement;
   return env;
@@ -133,10 +133,10 @@ check('persisted', env.store['seh-skin'], 'beacon');
 sb.window.SEHTheme.set('');
 check('back to default removes attribute', env.attrs['data-skin'], undefined);
 
-console.log('\npicker mounted into header');
+console.log('\npicker mounted into footer');
 env = makeEnv('');
 sb = run(env);
-check('a control was added', !!env.header._picker, true);
+check('a control was added', !!env.footer._picker, true);
 
 console.log(`\n${pass} passed, ${fail} failed`);
 process.exit(fail ? 1 : 0);

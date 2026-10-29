@@ -102,8 +102,8 @@ There is no public upload form; this is a static site with no backend to receive
 
 ## Theming the site
 
-The site ships **four complete looks**, switchable from the dropdown next to the
-dark-mode toggle in the header. The choice is remembered per browser and follows
+The site ships **four complete looks**, switchable from the small "Theme preview"
+dropdown at the bottom of the footer. The choice is remembered per browser and follows
 the visitor across every page — blog posts, hub pages, calendar, Hub Finder.
 
 To show options to a group, send links instead of asking them to hunt for the

@@ -428,29 +428,6 @@ body.alpha-warning-open {
 }
 
 /* --- Theme picker (demo control, see js/theme.js) ---- */
-.theme-picker {
-  display: flex;
-  align-items: center;
-}
-.theme-picker-select {
-  font-family: inherit;
-  font-size: calc(0.78rem * var(--header-scale));
-  color: var(--color-text);
-  background: var(--overlay-control);
-  border: 1px solid var(--overlay-control-border);
-  border-radius: var(--radius);
-  padding: 0.3em 0.5em;
-  max-width: 14em;
-  cursor: pointer;
-}
-.theme-picker-select:hover {
-  background: var(--overlay-control-hover);
-}
-.theme-picker-select:focus-visible {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
-}
-
 /* --- Navigation ------------------------------------- */
 .site-nav {
   flex: 1;
@@ -1154,6 +1131,35 @@ h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
   flex-wrap: wrap;
 }
 
+/* Demo-only theme switcher (js/theme.js), kept small below the footer links. */
+.theme-picker {
+  margin-top: 0.75rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.72rem;
+  color: var(--color-muted);
+}
+.theme-picker-select {
+  font-family: inherit;
+  font-size: inherit;
+  color: var(--color-text);
+  background: var(--overlay-control);
+  border: 1px solid var(--overlay-control-border);
+  border-radius: var(--radius);
+  padding: 0.15em 0.35em;
+  max-width: 14em;
+  cursor: pointer;
+}
+.theme-picker-select:hover {
+  background: var(--overlay-control-hover);
+}
+.theme-picker-select:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
 /* --- Utility ---------------------------------------- */
 .text-center { text-align: center; }
 .mt-1 { margin-top: 0.5rem; }
@@ -1198,12 +1204,6 @@ h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
   .header-inner {
     flex-wrap: wrap;
     padding: calc(0.75rem * var(--header-scale)) calc(1rem * var(--header-scale));
-  }
-
-  /* Shares the top row with the logo and two buttons, so it has to give. */
-  .theme-picker-select {
-    max-width: 8.5em;
-    font-size: 0.78rem;
   }
 
   .nav-list {
@@ -1268,6 +1268,10 @@ h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
   .footer-bottom {
     flex-direction: column;
     text-align: center;
+  }
+
+  .theme-picker {
+    justify-content: center;
   }
 }
 
