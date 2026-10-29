@@ -485,7 +485,18 @@
         mapTypeControl: false,
         streetViewControl: false,
         fullscreenControl: true,
+        styles: (window.SEHTheme && window.SEHTheme.mapStyles()) || undefined,
       });
+
+      /* Follow the site theme: restyle the tiles, and redraw the markers so
+         their colours come from the new palette too. */
+      if (window.SEHTheme) {
+        window.SEHTheme.onChange(() => {
+          this._map.setOptions({ styles: window.SEHTheme.mapStyles() });
+          /* Redraw so marker colours pick up the new palette. */
+          if (this._lastRenderArgs) this._renderMap.apply(this, this._lastRenderArgs);
+        });
+      }
 
       this._map.addListener('click', e => {
         const lat = e.latLng.lat(), lng = e.latLng.lng();
@@ -718,18 +729,26 @@
       this._renderGMRS(userLat, userLng);
     }
 
+    /** Marker colours come from the theme so they stay legible on any skin. */
+    _themeColor(token, fallback) {
+      return (window.SEHTheme && window.SEHTheme.token(token)) || fallback;
+    }
+
     _hubIcon(isSelected) {
       return {
         path: google.maps.SymbolPath.CIRCLE,
         scale: isSelected ? 13 : 8,
-        fillColor: isSelected ? '#c0392b' : '#6b7a8d',
+        fillColor: isSelected
+          ? this._themeColor('--color-danger', '#c0392b')
+          : this._themeColor('--color-muted', '#6b7a8d'),
         fillOpacity: isSelected ? 1 : 0.8,
-        strokeColor: '#ffffff',
+        strokeColor: this._themeColor('--color-surface', '#ffffff'),
         strokeWeight: isSelected ? 2 : 1.5,
       };
     }
 
     _renderMap(userLat, userLng, address, shown, active) {
+      this._lastRenderArgs = [userLat, userLng, address, shown, active];
       this._activeMarkers.forEach(m => m.setMap(null));
       this._activeMarkers = [];
       this._hubMarkers    = [];
@@ -743,9 +762,9 @@
         icon: {
           path: google.maps.SymbolPath.CIRCLE,
           scale: 10,
-          fillColor: '#2563a8',
+          fillColor: this._themeColor('--color-primary', '#2563a8'),
           fillOpacity: 1,
-          strokeColor: '#ffffff',
+          strokeColor: this._themeColor('--color-surface', '#ffffff'),
           strokeWeight: 2,
         },
       }));
@@ -767,7 +786,7 @@
         path: [{ lat: userLat, lng: userLng }, { lat: active.hub.lat, lng: active.hub.lng }],
         strokeOpacity: 0,
         icons: [{
-          icon: { path: 'M 0,-1 0,1', strokeOpacity: 0.85, strokeColor: '#c0392b', scale: 3 },
+          icon: { path: 'M 0,-1 0,1', strokeOpacity: 0.85, strokeColor: this._themeColor('--color-danger', '#c0392b'), scale: 3 },
           offset: '0',
           repeat: '14px',
         }],
