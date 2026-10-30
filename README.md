@@ -164,3 +164,25 @@ For Netlify deploys, this is generated automatically from the environment variab
 4. The build also accepts legacy `GOOGLE_API_KEY`, but `GOOGLE_MAPS_API_KEY` is preferred.
 
 For local/manual testing, you can also set the `seh-google-maps-api-key` meta tag directly in `hub-finder.html`.
+
+## Contact form
+
+`contact.html` posts to a Netlify Function (`netlify/functions/contact.mjs`, served at `/api/contact`) that checks a Cloudflare Turnstile spam challenge and then emails the message through [Resend](https://resend.com). Replies go straight to the sender: the email's Reply-To is the address they entered.
+
+One-time setup:
+
+1. **Turnstile:** in the Cloudflare dashboard, open Turnstile and add a widget for the site's domain(s), including the Netlify preview domain if you want the form to work there. Use the "Managed" mode. Copy the site key and secret key.
+2. **Resend:** create an account, verify the domain the email will be sent *from* (it gives you DNS records to add), and create an API key with sending access.
+3. **Netlify environment variables:**
+
+| Variable | Value |
+| --- | --- |
+| `TURNSTILE_SITE_KEY` | Turnstile site key (public; written into `js/runtime-config.js` at build) |
+| `TURNSTILE_SECRET_KEY` | Turnstile secret key |
+| `RESEND_API_KEY` | Resend API key |
+| `CONTACT_TO_EMAIL` | Inbox that receives messages; comma-separate several |
+| `CONTACT_FROM_EMAIL` | Sender on the verified domain, e.g. `SEH Website <contact@seattleemergencyhubs.org>` |
+
+4. Redeploy. Until the site key is set, the page shows a "not configured yet" notice instead of the form's Send button working.
+
+To test locally, run `netlify dev` (Netlify CLI) so `/api/contact` exists. Cloudflare publishes [test keys](https://developers.cloudflare.com/turnstile/troubleshooting/testing/) that always pass, e.g. site key `1x00000000000000000000AA` with secret `1x0000000000000000000000000000000AA`.

@@ -162,66 +162,135 @@
 
 
 /* =====================================================
-   BEACON -- high-visibility. Reads like emergency
-   signage: navy and safety amber, heavy rules, strong
-   borders, larger type. The most legible of the four.
+   BEACON -- high-visibility, like a safety vest.
+   Fluorescent orange with a cross-hatched mesh, bands
+   of silver reflective tape, hazard-striped rules, and
+   near-black ink. Square, heavy, and the most legible
+   of the four: the patterns stay in the chrome (header,
+   hero, footer, rules) and never sit behind body text.
+
+   Orange is too bright to read as text on white, so it
+   fills things (buttons, header, hero) and links use the
+   darker --color-link instead.
    ===================================================== */
 [data-skin="beacon"]:not([data-theme="dark"]) {
-  --color-primary:      #10375c;
-  --color-primary-dark: #081f36;
-  --color-secondary:    #0b6b3a;
-  --color-accent:       #d7263d;
+  --color-primary:      #ff6a00;   /* fluorescent safety orange */
+  --color-primary-dark: #e65100;
+  --color-secondary:    #c6f000;   /* hi-vis yellow-green */
+  --color-accent:       #ffd000;   /* safety yellow */
+  --color-on-brand:     #111111;
+  --color-link:         #b33c00;
+  --color-secondary-text: #3f6100;
 
   --color-bg:           #ffffff;
   --color-surface:      #ffffff;
-  --color-text:         #10181f;
-  --color-muted:        #44525e;
-  --color-border:       #10375c;
-  --color-footer-bg:    #10375c;
-  --color-footer-text:  #e8eef4;
+  --color-text:         #111111;
+  --color-muted:        #474747;
+  --color-border:       #111111;
+  --color-footer-bg:    #f2f2f2;
+  --color-footer-text:  #333333;
 
-  --surface-info:       #e4edf6;
-  --surface-success:    #e2f0e7;
+  --surface-info:       #fff0e3;
+  --surface-success:    #f1fbd0;
   --color-success:      #0b4a28;
-  --surface-warning:    #fff4d6;
-  --surface-danger:     #fbe6e9;
-  --badge-bg:           #ffc400;
-  --badge-text:         #10181f;
+  --surface-warning:    #fff7cc;
+  --surface-danger:     #ffe8e0;
+  --badge-bg:           #ffd000;
+  --badge-text:         #111111;
+
+  /* Vest fabric: a fine diagonal mesh over the orange, and the silver
+     retroreflective tape, shaded so it reads as a raised band. */
+  --beacon-mesh:
+    repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.11) 0 1px, transparent 1px 7px),
+    repeating-linear-gradient(-45deg, rgba(0, 0, 0, 0.11) 0 1px, transparent 1px 7px);
+  --beacon-tape: linear-gradient(180deg, #7d858c 0%, #d9dee2 22%, #ffffff 50%, #c4cbd0 78%, #7d858c 100%);
+
+  --header-bg:   var(--beacon-tape) left bottom / 100% 12px no-repeat, var(--beacon-mesh), var(--color-primary);
+  --header-text: #111111;
+  --footer-bg:
+    var(--beacon-tape) left 0 top 10px / 100% 12px no-repeat,
+    linear-gradient(var(--color-primary), var(--color-primary)) left top / 100% 32px no-repeat,
+    var(--color-footer-bg);
+  --gradient-hero:
+    var(--beacon-tape) left 0 top 1.25rem / 100% 14px no-repeat,
+    var(--beacon-tape) left 0 bottom 1.25rem / 100% 14px no-repeat,
+    var(--beacon-mesh), var(--color-primary);
+  --gradient-brand: var(--beacon-mesh), linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+
+  /* The logo is black and orange; on the orange header it sits on a
+     white patch, like a name badge on a vest. */
+  --logo-patch:      #ffffff;
+  --logo-patch-pad:  4px 10px;
+  --logo-patch-ring: 0 0 0 2px #111111;
+
+  --rule-width:   8px;
+  --rule-color:   transparent;
+  --rule-pattern: repeating-linear-gradient(-45deg, #111111 0 8px, var(--color-primary) 8px 16px);
 
   --font-body:    'Source Sans Pro', 'Segoe UI', Tahoma, system-ui, sans-serif;
   --font-heading: var(--font-body);
   --heading-tracking: 0.01em;
-  --color-heading: var(--color-primary);
+  --color-heading: var(--color-text);
 
   --radius:       0px;
-  --rule-width:   5px;
-  --shadow:            0 0 0 1px rgba(16, 55, 92, 0.22);
-  --shadow-header:     0 3px 0 var(--color-accent);
-  --shadow-card-hover: 0 0 0 2px var(--color-primary);
+  --shadow:            0 0 0 2px #111111;
+  --shadow-header:     0 2px 0 #111111;
+  --shadow-card-hover: 0 0 0 3px var(--color-primary);
   --header-scale: 1.5;
 }
+/* Night shift: the orange stays orange (that is the point of hi-vis),
+   the page goes dark, and the tape brightens as if caught in headlights. */
 [data-skin="beacon"][data-theme="dark"] {
-  --color-primary:      #ffc400;
-  --color-primary-dark: #d9a400;
-  --color-secondary:    #4ade80;
-  --color-accent:       #ff5c6c;
-  --color-on-brand:     #10181f;
+  --color-primary:      #ff7a1a;
+  --color-primary-dark: #ff5a00;
+  --color-secondary:    #c6f000;
+  --color-accent:       #ffd000;
+  --color-on-brand:     #111111;
   --color-on-alert:     #ffffff;
 
-  --color-bg:           #0a0f14;
-  --color-surface:      #141c24;
-  --color-text:         #f2f6fa;
-  --color-muted:        #a7b6c2;
-  --color-border:       #ffc400;
-  --color-footer-bg:    #05090d;
-  --color-footer-text:  #d7e2ec;
+  --color-bg:           #0d0d0d;
+  --color-surface:      #1a1a1a;
+  --color-text:         #f5f5f5;
+  --color-muted:        #b8b8b8;
+  --color-border:       #ff7a1a;
+  --color-footer-bg:    #000000;
+  --color-footer-text:  #d4d4d4;
 
-  --surface-info:       #14283a;
-  --surface-success:    #10301f;
-  --surface-warning:    #3a2e08;
-  --surface-danger:     #3a141a;
-  --badge-bg:           #ffc400;
-  --badge-text:         #10181f;
+  --surface-info:       #33200f;
+  --surface-success:    #1f2a08;
+  --surface-warning:    #332b05;
+  --surface-danger:     #3a1610;
+  --badge-bg:           #ffd000;
+  --badge-text:         #111111;
+
+  --beacon-mesh:
+    repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.13) 0 1px, transparent 1px 7px),
+    repeating-linear-gradient(-45deg, rgba(0, 0, 0, 0.13) 0 1px, transparent 1px 7px);
+  --beacon-tape: linear-gradient(180deg, #a9b1b8 0%, #f2f5f7 20%, #ffffff 50%, #e6eaed 80%, #a9b1b8 100%);
+
+  --header-bg:   var(--beacon-tape) left bottom / 100% 12px no-repeat, var(--beacon-mesh), var(--color-primary);
+  --header-text: #111111;
+  --footer-bg:
+    var(--beacon-tape) left 0 top 10px / 100% 12px no-repeat,
+    linear-gradient(var(--color-primary), var(--color-primary)) left top / 100% 32px no-repeat,
+    var(--color-footer-bg);
+  --gradient-hero:
+    var(--beacon-tape) left 0 top 1.25rem / 100% 14px no-repeat,
+    var(--beacon-tape) left 0 bottom 1.25rem / 100% 14px no-repeat,
+    var(--beacon-mesh), var(--color-primary);
+  --gradient-brand: var(--beacon-mesh), linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+
+  /* Dark mode swaps in the reversed (white and orange) logo. */
+  --logo-patch:      #111111;
+  --logo-patch-pad:  4px 10px;
+  --logo-patch-ring: 0 0 0 2px #111111;
+
+  /* Nav links sit on orange, not on the dark page, so hover darkens. */
+  --overlay-nav-hover:      rgba(0, 0, 0, 0.12);
+
+  --rule-width:   8px;
+  --rule-color:   transparent;
+  --rule-pattern: repeating-linear-gradient(-45deg, #f5f5f5 0 8px, var(--color-primary) 8px 16px);
 
   --font-body:    'Source Sans Pro', 'Segoe UI', Tahoma, system-ui, sans-serif;
   --font-heading: var(--font-body);
@@ -229,9 +298,8 @@
   --color-heading: var(--color-primary);
 
   --radius:       0px;
-  --rule-width:   5px;
-  --shadow:            0 0 0 1px rgba(255, 196, 0, 0.30);
-  --shadow-header:     0 3px 0 var(--color-accent);
-  --shadow-card-hover: 0 0 0 2px var(--color-primary);
+  --shadow:            0 0 0 1px rgba(255, 122, 26, 0.45);
+  --shadow-header:     0 2px 0 #000000;
+  --shadow-card-hover: 0 0 0 3px var(--color-primary);
   --header-scale: 1.5;
 }

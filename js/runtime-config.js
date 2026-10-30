@@ -1,1 +1,2 @@
 window.GOOGLE_MAPS_API_KEY = window.GOOGLE_MAPS_API_KEY || '';
+window.TURNSTILE_SITE_KEY = window.TURNSTILE_SITE_KEY || '';

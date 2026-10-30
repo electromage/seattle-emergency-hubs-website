@@ -38,7 +38,7 @@ own dark mode, so there are eight combinations in total.
 | **Default — Harbor Blue** | The current site. Unchanged. |
 | **Rainier — Evergreen** | Civic and settled. Evergreen and stone, a serif voice, square corners, almost no shadow. |
 | **Sound — Teal** | Open and modern. Teal on near-white, large soft corners, roomy header, geometric sans. |
-| **Beacon — High Visibility** | Reads like emergency signage. Navy and safety amber, heavy rules, square, the most legible of the four. |
+| **Beacon — High Visibility** | A safety vest. Fluorescent orange with a cross-hatched mesh, silver reflective-tape stripes, hazard-striped rules, near-black ink. Square and heavy; the patterns stay in the header, hero and footer so body text is always on plain ground. |
 
 They differ in typography, corner radius, shadow depth and header density as
 well as colour — a palette swap alone doesn't read as a different site.
@@ -207,6 +207,10 @@ someone can't read the site:
   tags, date blocks). A skin with a *light* primary must darken it. Keep
   primary, secondary and accent similar in lightness so one ink serves all
   three.
+- **`--color-link`** is inline link text, and defaults to `--color-primary`.
+  A skin whose primary is too bright to read as text (Beacon's safety orange)
+  fills buttons with the primary and sets a darker link colour here.
+  `--color-secondary-text` does the same for the secondary colour.
 - **`--color-on-alert`** is separate because the alert red stays dark in every
   theme — so it usually stays light even in a skin where `--color-on-brand`
   went dark.
@@ -223,10 +227,11 @@ someone can't read the site:
 
 ### Known exceptions
 
-The check reports six pairs it does not fail on, all in the **default**
+The check reports eleven pairs it does not fail on, all in the **default**
 palette and all pre-dating any theming work: white on Medium Blue `#2e86c1`
-(3.97:1), white on Signal Orange `#ff4d00` (3.33:1), and two marginal ones in
-the footer and success notice. Those are brand colours from
+(3.97:1), Medium Blue as link text (3.66–4.47:1), Forest Green "Read more"
+text on the dark card (3.11:1), white on Signal Orange
+`#ff4d00` (3.33:1), and two marginal ones in the footer and success notice. Those are brand colours from
 [`branding.html`](../branding.html) — changing them is a brand decision, not a
 code one, so they're listed in `PREEXISTING` in the checker with a note.
 Delete an entry the day the brand colour changes. The three new themes meet AA

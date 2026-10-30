@@ -55,6 +55,27 @@
   --color-footer-bg:   #e8ecf0;
   --color-footer-text: #5d6d7e;
 
+  /* Inline links. Separate from --color-primary so a skin whose primary
+     is too bright to read as text (Beacon's safety orange) can still
+     fill buttons with it. */
+  --color-link:        var(--color-primary);
+  /* Text set in the secondary colour ("Read more", assessment result).
+     Same split as --color-link, for a skin whose secondary is a fill. */
+  --color-secondary-text: var(--color-secondary);
+
+  /* -- Header & footer ------------------------------ */
+  /* Full `background` values rather than colours, so a skin can lay a
+     pattern over the fill (Beacon's safety-vest mesh and reflective
+     tape). Plain --color-footer-bg by default. */
+  --header-bg:         var(--color-footer-bg);
+  --header-text:       var(--color-text);
+  --footer-bg:         var(--color-footer-bg);
+  /* A patch behind the header logo, for a header colour that would
+     swallow part of the logo. None by default. */
+  --logo-patch:        transparent;
+  --logo-patch-pad:    0;
+  --logo-patch-ring:   none;
+
   /* -- Semantic roles ------------------------------- */
   --color-success:      #1e8449;
   --color-danger:       #c0392b;
@@ -120,6 +141,10 @@
   --max-width:         1100px;
   --radius:            6px;
   --rule-width:        3px;   /* section-title underline */
+  --rule-color:        var(--color-secondary);
+  /* An image painted over the underline (stripes, tape). With one, set
+     --rule-color to transparent. */
+  --rule-pattern:      none;
 }
 
 /* --- Dark Mode -------------------------------------- */
@@ -178,7 +203,7 @@ body {
 }
 
 a {
-  color: var(--color-primary);
+  color: var(--color-link);
   text-decoration: none;
 }
 a:hover {
@@ -320,8 +345,8 @@ body.alpha-warning-open {
 
 /* --- Site Header ------------------------------------- */
 .site-header {
-  background: var(--color-footer-bg);
-  color: var(--color-text);
+  background: var(--header-bg);
+  color: var(--header-text);
   box-shadow: var(--shadow-header);
   position: sticky;
   top: 0;
@@ -349,6 +374,10 @@ body.alpha-warning-open {
   display: flex;
   align-items: center;
   flex-shrink: 0;
+  background: var(--logo-patch);
+  padding: var(--logo-patch-pad);
+  box-shadow: var(--logo-patch-ring);
+  border-radius: var(--radius);
 }
 
 .site-logo {
@@ -391,7 +420,7 @@ body.alpha-warning-open {
   display: block;
   width: calc(24px * var(--header-scale));
   height: calc(2px * var(--header-scale));
-  background: var(--color-text);
+  background: var(--header-text);
   border-radius: 2px;
   transition: transform 0.2s, opacity 0.2s;
 }
@@ -415,7 +444,7 @@ body.alpha-warning-open {
   background: var(--overlay-control);
   border: 1px solid var(--overlay-control-border);
   border-radius: 50%;
-  color: var(--color-text);
+  color: var(--header-text);
   cursor: pointer;
   font-size: calc(1.1rem * var(--header-scale));
   transition: background 0.15s;
@@ -454,7 +483,7 @@ body.alpha-warning-open {
   gap: calc(0.3rem * var(--header-scale));
   padding: calc(0.45rem * var(--header-scale)) calc(0.75rem * var(--header-scale));
   border-radius: var(--radius);
-  color: var(--color-text);
+  color: var(--header-text);
   font-size: calc(0.9rem * var(--header-scale));
   font-weight: 500;
   white-space: nowrap;
@@ -571,7 +600,8 @@ h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
   font-weight: 700;
   margin-bottom: 1.5rem;
   padding-bottom: 0.5rem;
-  border-bottom: var(--rule-width) solid var(--color-secondary);
+  border-bottom: var(--rule-width) solid var(--rule-color);
+  background: var(--rule-pattern) left bottom / 100% var(--rule-width) no-repeat border-box;
   display: inline-block;
 }
 
@@ -678,7 +708,7 @@ h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
   border: none;
 }
 .post-card h2 a {
-  color: var(--color-primary);
+  color: var(--color-link);
   text-decoration: none;
 }
 .post-card h2 a:hover {
@@ -723,7 +753,7 @@ h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
 .read-more {
   font-size: 0.9rem;
   font-weight: 600;
-  color: var(--color-secondary);
+  color: var(--color-secondary-text);
 }
 
 /* Blog post article */
@@ -795,7 +825,7 @@ h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
   margin-bottom: 1.5rem;
 }
 .back-link:hover {
-  color: var(--color-primary);
+  color: var(--color-link);
   text-decoration: none;
 }
 
@@ -972,8 +1002,8 @@ h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
 }
 .btn-outline {
   background: transparent;
-  color: var(--color-primary);
-  border: 1.5px solid var(--color-primary);
+  color: var(--color-link);
+  border: 1.5px solid var(--color-link);
 }
 
 /* Hub detail page */
@@ -1052,7 +1082,7 @@ h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
 
 /* --- Footer ----------------------------------------- */
 .site-footer {
-  background: var(--color-footer-bg);
+  background: var(--footer-bg);
   color: var(--color-muted);
   margin-top: auto;
   padding: 2.5rem 1.5rem 1.5rem;
@@ -1158,6 +1188,79 @@ h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
 .theme-picker-select:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
+}
+
+/* --- Contact form ----------------------------------- */
+.contact-form {
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2rem;
+  max-width: 640px;
+}
+.form-row {
+  margin-bottom: 1.25rem;
+}
+.form-row label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+.form-row input,
+.form-row textarea {
+  width: 100%;
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 0.55rem 0.7rem;
+}
+.form-row textarea {
+  resize: vertical;
+  min-height: 8rem;
+}
+.form-row input:focus-visible,
+.form-row textarea:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 1px;
+  border-color: var(--color-primary);
+}
+.form-honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.form-status {
+  margin-bottom: 1.25rem;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius);
+  border: 1px solid;
+}
+.form-status-success {
+  background: var(--surface-success);
+  border-color: var(--border-success);
+  color: var(--color-text);
+}
+.form-status-error {
+  background: var(--surface-danger);
+  border-color: var(--border-danger);
+  color: var(--color-text);
+}
+.contact-form button {
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+.contact-form button:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+@media (max-width: 600px) {
+  .contact-form { padding: 1.25rem; }
 }
 
 /* --- Utility ---------------------------------------- */
@@ -1459,7 +1562,7 @@ h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
 .assess-result-text {
   font-size: 1.05rem;
   font-weight: 600;
-  color: var(--color-secondary);
+  color: var(--color-secondary-text);
 }
 
 /* FAQ accordion */

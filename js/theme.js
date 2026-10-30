@@ -35,7 +35,7 @@
     { id: '',        label: 'Default - Harbor Blue', note: 'The current site' },
     { id: 'rainier', label: 'Rainier - Evergreen',   note: 'Civic, serif, square corners' },
     { id: 'sound',   label: 'Sound - Teal',          note: 'Modern, soft, roomy' },
-    { id: 'beacon',  label: 'Beacon - High Visibility', note: 'Signage-like, strongest contrast' }
+    { id: 'beacon',  label: 'Beacon - High Visibility', note: 'Safety-vest orange, reflective stripes' }
   ];
 
   var root = document.documentElement;
