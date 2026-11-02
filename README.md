@@ -186,3 +186,45 @@ One-time setup:
 4. Redeploy. Until the site key is set, the page shows a "not configured yet" notice instead of the form's Send button working.
 
 To test locally, run `netlify dev` (Netlify CLI) so `/api/contact` exists. Cloudflare publishes [test keys](https://developers.cloudflare.com/turnstile/troubleshooting/testing/) that always pass, e.g. site key `1x00000000000000000000AA` with secret `1x0000000000000000000000000000000AA`.
+
+## Dependency security scanning
+
+The packages in `package.json` are pinned to exact versions in `package-lock.json`. Two GitHub features check those pinned versions for known security vulnerabilities. Neither one is part of the Netlify build, so a scan finding a problem never blocks a deploy or a blog post from going live.
+
+### Dependabot (`.github/dependabot.yml`)
+
+GitHub compares `package-lock.json` against its database of security advisories all the time, not only when someone commits. New advisories are often published against versions you've already pinned, so a lock file nobody has touched can still become vulnerable.
+
+- **Security alerts** show up under the repo's **Security → Dependabot** tab, and GitHub emails people who watch the repo.
+- **Security update PRs:** when a fixed version exists, Dependabot opens a pull request that updates just that package.
+- **Routine update PRs:** once a week, Dependabot opens one grouped PR that brings all npm packages up to date. Once a month it does the same for the GitHub Actions used by the workflow below.
+
+Dependabot's PRs run the security audit below like any other PR. Review the changes, merge if the checks pass, and the next Netlify deploy uses the new versions.
+
+### Security audit workflow (`.github/workflows/audit.yml`)
+
+This runs on every push to `main`, on every pull request, every Monday morning, and on demand from the repo's **Actions** tab ("Run workflow"). It:
+
+1. runs `npm audit --audit-level=high`, which fails if any pinned package has a high or critical advisory, and
+2. installs exactly what the lock file pins and runs `npm audit signatures`, which confirms every package was signed by the npm registry and catches a tampered download.
+
+A failed run shows as a red ✗ on the commit or PR. GitHub emails whoever last edited the workflow's schedule, so make sure that's someone who will see it.
+
+### One-time setup
+
+`dependabot.yml` alone only turns on the weekly routine-update PRs. In the repo's **Settings → Code security**, turn on:
+
+- **Dependabot alerts**
+- **Dependabot security updates**
+
+Optionally, under **Settings → Branches**, add a rule for `main` that requires the **Security audit** check to pass before a PR can merge.
+
+### Checking locally
+
+```bash
+npm audit                # list known vulnerabilities in the pinned versions
+npm audit fix            # update affected packages to fixed versions, where possible
+npm audit signatures     # verify registry signatures (needs npm 10 or newer)
+```
+
+`npm audit fix` changes `package-lock.json`. Run `npm run check` afterwards and commit the lock file. npm 9 and older wrongly report `EEXPIREDSIGNATUREKEY` for packages signed with npm's previous registry key. Update with `npm install -g npm@10` if you see that.

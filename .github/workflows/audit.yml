@@ -1,0 +1,39 @@
+# Checks every pinned package in package-lock.json against the npm advisory
+# database. Runs on each push and PR, and weekly on a schedule, because new
+# advisories are published against versions that are already pinned -- an
+# unchanged lock file can become vulnerable without anyone committing.
+#
+# Deliberately not part of the Netlify build: a failing audit there would
+# block deploys, including blog posts published from the CMS.
+name: Security audit
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "0 16 * * 1"   # Mondays, 08:00 Pacific
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # Reads package-lock.json directly; fails on high or critical advisories.
+      - name: Check for known vulnerabilities
+        run: npm audit --audit-level=high
+
+      # Confirms each installed package was signed by the npm registry, which
+      # catches a tampered download that still matches a pinned version.
+      - name: Install exactly what the lock file pins
+        run: npm ci --ignore-scripts
+      - name: Verify registry signatures
+        run: npm audit signatures
