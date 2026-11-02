@@ -1,0 +1,19 @@
+# Opens pull requests to update pinned dependencies in package-lock.json.
+# Security fixes arrive as their own PRs as soon as an advisory is published
+# (once "Dependabot security updates" is on in the repo's Code security
+# settings); this file adds a weekly batch of routine version updates.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      npm-dependencies:
+        patterns: ["*"]
+
+  # Keeps the actions used by .github/workflows/ current too.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
