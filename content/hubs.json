@@ -54,6 +54,12 @@
       "status": "active",
       "metricLabel": "Volunteers",
       "metricValue": "21"
+    },
+    {
+      "status": "forming",
+      "name": "Sample Lame Hub",
+      "slug": "lame-hub",
+      "blurb": "This hub has no volunteers, don't be like this hub."
     }
   ]
 }
